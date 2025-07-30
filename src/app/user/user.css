@@ -1,37 +1,40 @@
 div {
   border-radius: 3px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);*/
   overflow: hidden;
+
 }
 
 button {
-border-radius: 6px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.5rem;
   background-color: #232946;
-  color: #fffffe;
-  border: 3px solid #121629;
+  color: #b8c1ec;
+  border: 3px solid #fffffe;
   font: inherit;
   cursor: pointer;
   width: 100%;
   min-width: 10rem;
   text-align: left;
+  
 }
 
 button:hover,
 button:active,
 .active {
-  background-color: #eebbc3;
-  color: #232946;
-  font: inherit
+  background-color: #b8c1ec;
+  color: black; 
+  font: inherit , bold;
 }
 
 img {
   width: 2rem;
   object-fit: contain;
   border-radius: 50%;
+  /*border: 3px solid #b8c1ec;*/
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 

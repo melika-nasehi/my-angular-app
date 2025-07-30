@@ -11,9 +11,8 @@ header {
   padding: 1rem;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
-  border-bottom: 3px solid #121629;
-  border-left: 3px solid #121629;
-  border-right: 3px solid #121629;
+  border: 3px solid #fffffe;
+  border-top: none;
 }
 
 img {
