@@ -1,5 +1,17 @@
-<div>
-    <p>
-        <span> {{  }} </span>
-    </p>
-</div>
+<article>
+        <h3>{{task.title}}</h3>
+        <p>task id : {{task.id}}</p>
+        <p>user id : {{task.user_id}}</p>
+        @if (isCompeleted(task.id)) {
+            <p id="completed">completed</p>
+            <p class="actions">
+                <button (click)="onCompleteTask()">uncomplete</button>
+            </p>
+        }
+        @else {
+            <p id="not_completed">not completed</p>
+            <p class="actions">
+                <button (click)="onCompleteTask()">complete</button>
+            </p>
+        }
+</article>
