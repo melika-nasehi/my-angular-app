@@ -2,7 +2,7 @@
         <h3>{{task.title}}</h3>
         <p>task id : {{task.id}}</p>
         <p>user id : {{task.user_id}}</p>
-        @if (isCompeleted(task.id)) {
+        @if (task.completed) {
             <p id="completed">completed</p>
             <p class="actions">
                 <button (click)="onCompleteTask()">uncomplete</button>

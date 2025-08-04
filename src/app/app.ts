@@ -6,7 +6,7 @@ import {DUMMY_USERS} from './dummy-users' ;
 import { TaskList } from "./tasklist/tasklist";
 import { DUMMY_TASKS } from './dummy-tasks';
 import {NgFor, NgIf} from '@angular/common'
-import { Task } from './task/task';
+import { Task } from './tasklist/task/task';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class App {
   protected readonly title = signal('my-angular-app');
   users_dummy = DUMMY_USERS ;
   tasks_dummy = DUMMY_TASKS ;
-  selectedUserId ? : string ;
+  selectedUserId !: string ;
 
   get selectedUserTasks() {
     return this.tasks_dummy.filter((task) => task.user_id === this.selectedUserId) 

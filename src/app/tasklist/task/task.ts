@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {DUMMY_TASKS} from '../dummy-tasks'
-import { DUMMY_USERS } from '../dummy-users';
+import {DUMMY_TASKS} from '../../dummy-tasks'
+import { DUMMY_USERS } from '../../dummy-users';
 import { task_interface } from './task.model';
 
 
@@ -20,15 +20,5 @@ export class Task {
     this.complete.emit(this.task.id)
   }
 
-  isCompeleted(id: string){
-    return DUMMY_TASKS.find((task)=>task.id===id)?.completed
-  }
-
-
-
-  //@Output() select = new EventEmitter<string>()
-
-    
-  //dummy_tasks = DUMMY_TASKS ;
 
 }
