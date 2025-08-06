@@ -17,7 +17,7 @@ export class ProjectTab {
 
 
   
-  isTabOpen = false
+  public isTabOpen = false
 
   @Output() select = new EventEmitter<string>();
 

@@ -1,6 +1,6 @@
 export interface user_interface {
     id : string;
-    user_name : string 
+    username : string 
     password: string 
     first_name : string
     last_name : string 

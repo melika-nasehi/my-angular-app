@@ -1,11 +1,7 @@
 <button
-  (click)="[ onOpenTab() , onSelectorProject() ]"
+  (click)="[onSelectorProject()]"
   [class.active]="selected"
   class="project-tab"
 >
   {{ project.title }}
 </button>
-
-<!-- @if(isTabOpen){
-  <app-project-details></app-project-details>
-} -->

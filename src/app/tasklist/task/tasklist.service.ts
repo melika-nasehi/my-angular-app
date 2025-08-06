@@ -22,7 +22,7 @@ constructor(){
 
 AddNewTask(enetered_task : new_task_interface , userId : string, projectID:string){
 
-    const founded_user = this.dummy_users.find((user)=> user.id === userId )
+    const founded_user = this.dummy_users.find((user)=> (user.id.toString()) === userId )
     const founded_project = this.dummy_projects.find((proj)=> proj.id === projectID )
     if (!founded_user || !founded_project)
         return

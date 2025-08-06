@@ -1,4 +1,26 @@
-<div>
-    <ul>    <p>project-details works!</p>
-</ul>
+<div class="project-details">
+  <h3>{{ project.title }}</h3>
+  
+  <p><strong>Access:</strong> {{ project.access === 'PB' ? 'Public' : 'Private' }}</p>
+  <p><strong>Category:</strong>
+    {{
+      project.category === 'PR' ? 'Personal' :
+      project.category === 'WR' ? 'Work' :
+      project.category === 'TM' ? 'Team' : ''
+    }}
+  </p>
+  
+  <p><strong>Start Date:</strong> {{ project.start_date }}</p>
+  <p><strong>End Date:</strong> {{ project.end_date }}</p>
+  <p><strong>Archived:</strong> {{ project.is_archived ? 'Yes' : 'No' }}</p>
+  <p><strong>Theme:</strong> {{ project.theme }}</p>
+
+  <div class="project-users">
+    <h4>Members:</h4>
+    <ul>
+      @for (user of project.users; track user.id) {
+        <li>{{ user.first_name }} {{ user.last_name }} ({{ user.role }})</li>
+      }
+    </ul>
+  </div>
 </div>

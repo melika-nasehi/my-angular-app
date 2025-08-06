@@ -1,7 +1,7 @@
 export const DUMMY_USERS = [
   {
     id: 'u1',
-    user_name : 'user_n1',
+    username : 'user_n1',
     password : '123' ,
     first_name: 'Jasmine',
     last_name : 'Washington' ,
@@ -10,7 +10,7 @@ export const DUMMY_USERS = [
   },
   {
     id: 'u2',
-    user_name : 'user_n2',
+    username : 'user_n2',
     password : '123' ,
     first_name: 'melika',
     last_name : 'nasehi' ,
@@ -19,7 +19,7 @@ export const DUMMY_USERS = [
   },
   {
     id: 'u3',
-    user_name : 'user_n3',
+    username : 'user_n3',
     password : '123' ,
     first_name: 'ali',
     last_name : 'mohammadi' ,
@@ -28,7 +28,7 @@ export const DUMMY_USERS = [
   },
   {
     id: 'u4',
-    user_name : 'user_n4',
+    username : 'user_n4',
     password : '123' ,
     first_name: 'fateme',
     last_name : 'alavi' ,
@@ -37,7 +37,7 @@ export const DUMMY_USERS = [
   },
   {
     id: 'u5',
-    user_name : 'user_n5',
+    username : 'user_n5',
     password : '123' ,
     first_name: 'ahmad',
     last_name : 'ahmadi' ,
@@ -46,7 +46,7 @@ export const DUMMY_USERS = [
   },
   {
     id: 'u6',
-    user_name : 'user_n6',
+    username : 'user_n6',
     password : '123' ,
     first_name: 'aaa',
     last_name : 'sdffd' ,

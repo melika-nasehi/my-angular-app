@@ -24,7 +24,7 @@ export class User {
   // }
 
   onSelectorUser() {
-    this.select.emit(this.user.id) ;
+    this.select.emit((this.user.id.toString())) ;
   }
 
 }
