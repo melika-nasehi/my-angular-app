@@ -1,0 +1,48 @@
+import { DUMMY_USERS } from "./dummy-users";
+
+export const DUMMY_PROJECTS = [
+  {
+    id : 'p1',
+    title: 'my project',
+    users: [DUMMY_USERS[0],DUMMY_USERS[1]] ,
+    access : 'PB',
+    category : 'TM',
+    is_archived : true,
+    start_date : '2025-09-01',
+    end_date : '2025-10-01',
+    theme : 'red',
+  },
+  {
+    id : 'p2',
+    title: 'heheheheh',
+    users: [DUMMY_USERS[0],DUMMY_USERS[1],DUMMY_USERS[3]] ,
+    access : 'PV',
+    category : 'WR',
+    is_archived : false,
+    start_date : '2025-09-05',
+    end_date : '2025-10-07',
+    theme : 'black',
+  },
+  {
+    id : 'p3',
+    title: 'team proj',
+    users: [DUMMY_USERS[1],DUMMY_USERS[4]] ,
+    access : 'PB',
+    category : 'TM',
+    is_archived : false,
+    start_date : '2025-09-22',
+    end_date : '2025-11-01',
+    theme : 'white',
+  },
+  {
+    id : 'p4',
+    title: 'tilte project',
+    users: [DUMMY_USERS[0]] ,
+    access : 'PB',
+    category : 'PR',
+    is_archived : false,
+    start_date : '2025-09-01',
+    end_date : '2026-04-01',
+    theme : 'green',
+  },
+]

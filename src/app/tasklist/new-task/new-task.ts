@@ -13,6 +13,7 @@ import { TasksService } from '../task/tasklist.service';
 
 export class NewTask {
   @Input({required: true}) userID! : string
+  @Input({required:true}) projectID! : string
 
   @Output() close = new EventEmitter<void>()
   //@Output() create = new EventEmitter<new_task_interface>()
@@ -27,11 +28,12 @@ export class NewTask {
   }
 
   onSubmitForm(){
-      this.taskService.AddNewTask({
+    this.taskService.AddNewTask({
         title : this.enteredTitle ,
         deadline : this.enteredDate ,
       } ,
-      this.userID)
+    this.userID,
+    this.projectID)
 
     this.close.emit()
   }

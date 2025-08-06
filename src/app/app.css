@@ -14,6 +14,12 @@ h1{
   margin: 0;
   margin-bottom: 0px;
 }
+h2{
+  color: #fffffe;
+  font : inherit , bold;
+  margin: 0;
+  margin-bottom: 20px;
+}
 
 p{
   color: #b8c1ec;

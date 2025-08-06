@@ -1,6 +1,7 @@
 import { Component, computed, Input, input, Output, EventEmitter, output } from '@angular/core';
 import {DUMMY_USERS} from '../dummy-users' ;
-import { user_interface } from './user.model';
+import { user_interface , profile_interface} from './user.model'
+import { DUMMY_PROFILES } from '../dummy_profiles';
 
 
 @Component({
@@ -12,14 +13,15 @@ import { user_interface } from './user.model';
 export class User {
 
   @Input({required: true}) user! : user_interface
+  //@Input({required: true}) profile? : profile_interface
   @Input({required:true}) selected!: boolean 
 
   @Output() select = new EventEmitter<string>();
   
 
-  get imagePath(){
-    return '/users_pic/' + this.user.avatar
-  }
+  // get imagePath(){
+  //   return '/users_pic/' + this.profile?.avatar
+  // }
 
   onSelectorUser() {
     this.select.emit(this.user.id) ;

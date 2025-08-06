@@ -1,6 +1,6 @@
 @if (isAddingNewTask){
    <app-new-task [userID]="userId"
-   (close)="onCloseNewTask()" ></app-new-task>
+   (close)="onCloseNewTask()" [projectID]="projectId" ></app-new-task>
 }
 
 <section id="tasks">
@@ -12,12 +12,12 @@
 </header>
 
 <ul> 
-   @for (item of selectedUserTask ; track item.id){
+   <!-- @for (item of selectedUserTask ; track item.id){
 
    <li>
         <app-task [task]="item" ></app-task>
    </li>
-   }
+   } -->
 </ul>
 
 </section>

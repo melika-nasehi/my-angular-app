@@ -8,13 +8,29 @@
         <li >
         <app-user [user]="item" 
         [selected]="item.id === selectedUserId"
-        (select)="onSelectUser($event)"> </app-user>
+        (select)="onSelectUser($event)" > </app-user>
       </li>
     }
     
 </ul>
 @if (selectedUser){
-  <app-tasklist [name]="selectedUser.name" [userId]="selectedUserId"></app-tasklist>
+  <div class="tabs-container">
+    <h2>{{selectedUser.first_name}}'s projects :</h2>
+    @for (item of project_dummy; track item.id){
+      @if(isUserInProject(item.users)) {
+      <app-project-tab
+        [project]="item"
+        [selected]="item.id === selectedProjectId"
+        (select)="onSelectProject($event)">
+      </app-project-tab>
+      
+      @if (selectedProject) {
+        <app-project-details></app-project-details>
+      }
+      }
+    }
+  </div>
+  <!-- <app-tasklist [name]="selectedUser.first_name" [userId]="selectedUserId" [projectId]="selectedProjectId"></app-tasklist> -->
 }
 @else {
   <p id="fallback">select a user</p>

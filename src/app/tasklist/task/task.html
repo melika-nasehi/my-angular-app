@@ -1,7 +1,7 @@
 <article>
         <h3>{{task.title}}</h3>
         <p>task id : {{task.id}}</p>
-        <p>user id : {{task.user_id}}</p>
+        <p>user id : {{task.users}}</p>
         <p>deadline : {{ task.deadline | date : 'fullDate' }}</p>
         @if (task.completed) {
             <p id="completed">completed</p>

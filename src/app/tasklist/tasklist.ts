@@ -18,14 +18,15 @@ import { TasksService } from './task/tasklist.service';
 export class TaskList {
    @Input({required:true}) name?:string
    @Input({required:true}) userId! : string
+   @Input({required:true}) projectId! : string
    isAddingNewTask = false
 
   constructor(private taskService : TasksService){}
 
 
-   get selectedUserTask(){
-    return this.taskService.getUserTask(this.userId)
-   }
+  //  get selectedUserTask(){
+  //   return this.taskService.getUserTask(this.userId)
+  //  }
 
    onNewTask(){
     this.isAddingNewTask = true
