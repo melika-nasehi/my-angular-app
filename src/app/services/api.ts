@@ -11,11 +11,11 @@ export class Api {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
-    return this.http.get(this.BASE_URL + 'users/');
+    return this.http.get(this.BASE_URL + 'users/users_list/');
   }
 
-  getProjects(): Observable<any> {
-    return this.http.get(this.BASE_URL + 'projects/');
+  getProjects(user_id:string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}projects/project_of_user/${user_id}/`);
   }
 
   getTasks(): Observable<any> {

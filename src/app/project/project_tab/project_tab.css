@@ -1,10 +1,10 @@
 .project-tab {
-  padding: 0.8rem 1.6rem;
-  margin: 0 0.6rem 0.6rem 0;
+  padding: 0.7rem 1.6rem;
+  margin: 0 ;
   background: linear-gradient(135deg, #232946, #232946);
-  color: #b8c1ec;
-  border: 3px solid #b8c1ec;
-  border-radius: 16px 16px 0 0;
+  color: #eebbc3;
+  border: 3px solid #eebbc3;
+  border-radius: 16px 16px 0px 0;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
@@ -23,27 +23,33 @@
   background-color: #fffffe;
   transition: width 0.3s ease, left 0.3s ease;
   border-radius: 2px;
+  margin: 0;
 }
 
 .project-tab:hover::before {
   width: 100%;
   left: 0;
+  margin: 0;
 }
 
 .project-tab:hover {
-  background: linear-gradient(135deg, #b8c1ec54, #b8c1ec54);
-  color: #b8c1ec;
+  /* background: linear-gradient(135deg, #b8c1ec54, #b8c1ec54); */
+  background: linear-gradient(135deg, #eebbc399, #eebbc399);
+  color: #eebbc3;
+  margin: 0;
 }
 
 .project-tab.active {
-  background: linear-gradient(135deg, #b8c1ec, #b8c1ec);
+  background: linear-gradient(135deg, #eebbc3, #eebbc3);
   color: #232946;
   font-weight: 600;
-  box-shadow: 0 0px 0px #b8c1ec;
+  box-shadow: 0 0px 0px #eebbc3;
+  margin: 0;
 }
 
 .project-tab.active::before {
   width: 100%;
   left: 0;
-  background-color: #b8c1ec;
+  background-color: #eebbc3;
+  margin: 0;
 }

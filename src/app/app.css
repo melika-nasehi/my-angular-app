@@ -18,7 +18,7 @@ h2{
   color: #fffffe;
   font : inherit , bold;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 p{
@@ -66,7 +66,7 @@ p{
 .tabs-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0rem;
 }
 
 .tabs-row {
@@ -79,5 +79,5 @@ p{
 }
 
 .project-details {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }

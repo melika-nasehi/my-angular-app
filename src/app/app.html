@@ -4,43 +4,45 @@
   <ul id="users">
     <h1>users</h1>
 
-    <!-- @for (item of backend_users; track item.user.id) {
-        <li >
-        <app-user [user]="item.user" 
-        [selected]="(item.user.id.toString()) === selectedUserId"
-        (select)="onSelectUser($event)" > </app-user>
-      </li>
-    } -->
+    @for (item of backend_users; track item.id) {
+  <li>
+    <app-user [user]="item" 
+              [selected]="(item.id.toString()) === selectedUserId"
+              (select)="onSelectUser($event)">
+    </app-user>
+  </li>
+}
 
-    @for (item of users_dummy; track item.id) {
+
+    <!-- @for (item of users_dummy; track item.id) {
         <li >
         <app-user [user]="item" 
         [selected]="(item.id.toString()) === selectedUserId"
         (select)="onSelectUser($event)" > </app-user>
       </li>
-    }
+    } -->
     
 </ul>
 @if (selectedUser){
   <div class="tabs-container">
-  <h2>{{selectedUser.first_name}}'s projects :</h2>
-  
+  <h2>{{selectedUser.username}}'s projects :</h2>
+
   <div class="tabs-row">
-    @for (item of project_dummy; track item.id){
-      @if(isUserInProject(item.users)) {
+    @for (item of backend_projects; track item.id){
+      <!-- @if(isUserInProject(item.users)) { -->
         <app-project-tab
           [project]="item"
           [selected]="item.id === selectedProjectId"
           (select)="onSelectProject($event)">
         </app-project-tab>
-      }
+      <!-- } -->
     }
   </div>
 
   <div class="project-details">
-    @for (item of project_dummy; track item.id){
+    @for (item of backend_projects; track item.id){
       @if (item.id === selectedProjectId) {
-        <app-project-details [project]="item"></app-project-details>
+        <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
       }
     }
   </div>

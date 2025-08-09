@@ -38,13 +38,23 @@ export class App implements OnInit{
 
   constructor(private api: Api) { }
 
-  backend_users: User[] = [];
+  backend_users: user_interface[] = [];
 
   ngOnInit(): void {
-    this.api.getUsers().subscribe(data => {
+  this.api.getUsers().subscribe({
+    next: (data) => {
+      console.log("Data from backend:", data);
       this.backend_users = data;
+    },
+    error: (err) => {
+      console.error("Error loading users:", err);
+      }
     });
   }
+
+  backend_projects: any[] = [];
+
+
 
 
 
@@ -73,22 +83,36 @@ export class App implements OnInit{
     //console.log("selected user id : " + id) ;
     this.selectedUserId = id
     this.selectedProjectId = ''
+
+    this.api.getProjects(id).subscribe({
+    next: (projects) => {
+      this.backend_projects = projects;
+      console.log('Projects for user:', projects);
+    },
+    error: (err) => {
+      console.error('Error loading projects:', err);
+      this.backend_projects = [];
+      }
+    });
   }
 
   onSelectProject(id:string){
     this.selectedProjectId = id
+    // console.log("onSElectProject - project id: ", id)
   }
 
   get selectedProject(){
-    return this.project_dummy.find((proj)=>proj.id === this.selectedProjectId)
+    return this.backend_projects.find((proj)=>proj.id === this.selectedProjectId)
   }
 
   get selectedUser(){
-    return this.users_dummy.find((user) => (user.id.toString()) === this.selectedUserId)
+    // console.log("selectedUSer : ", this.selectedUserId)
+    return this.backend_users.find((user) => (user.id.toString()) === this.selectedUserId)
+    
   }
 
    getUserWithId(id?:string){
-    return DUMMY_USERS.find((user)=> (user.id.toString()) === id) 
+    return this.backend_users.find((user)=> (user.id.toString()) === id) 
   }
 
   findUserProfile(user_id:string) {
@@ -106,6 +130,14 @@ onOpenTab(){
   onCloseTab(){
     this.isTabOpen = false
   }
+
+  
+  getProjectUsers(project: any) {
+    return project.users.map((userId: string) => 
+      this.backend_users.find(user => user.id === userId)
+    ).filter(Boolean);
+  }
+
 
 
 }

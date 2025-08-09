@@ -8,8 +8,8 @@ export interface project_inteface {
     access : string //'PB' | 'PV'
     category : string //'PR' | 'WR' | 'TM'
     is_archived : boolean
-    start_date : string
-    end_date :string
+    startDate : string
+    endDate :string
     theme :string
 
 }
