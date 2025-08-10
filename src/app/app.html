@@ -1,33 +1,33 @@
+
+<app-login *ngIf="!isLoggedIn"></app-login>
+
+<div *ngIf="isLoggedIn">
+
 <app-header></app-header>
+<!-- <router-outlet></router-outlet> -->
+ <button (click)="logout()" *ngIf="isLoggedIn">خروج</button>
+
 
 <main>
   <ul id="users">
-    <h1>users</h1>
-
-    @for (item of backend_users; track item.id) {
-  <li>
-    <app-user [user]="item" 
+  <h1>users</h1>
+  @for (item of backend_users; track item.id) {
+    <li>
+      <app-user [user]="item" 
               [selected]="(item.id.toString()) === selectedUserId"
               (select)="onSelectUser($event)">
     </app-user>
-  </li>
-}
-
-
-    <!-- @for (item of users_dummy; track item.id) {
-        <li >
-        <app-user [user]="item" 
-        [selected]="(item.id.toString()) === selectedUserId"
-        (select)="onSelectUser($event)" > </app-user>
-      </li>
-    } -->
-    
+    </li>
+  }
 </ul>
+
 @if (selectedUser){
   <div class="tabs-container">
   <h2>{{selectedUser.username}}'s projects :</h2>
 
-  <div class="tabs-row">
+  <div class="row">
+      <div>
+      <div class="tabs-row">
     @for (item of backend_projects; track item.id){
       <!-- @if(isUserInProject(item.users)) { -->
         <app-project-tab
@@ -39,13 +39,25 @@
     }
   </div>
 
-  <div class="project-details">
-    @for (item of backend_projects; track item.id){
-      @if (item.id === selectedProjectId) {
-        <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
-      }
-    }
+  <div class="projects-container">
+    <div class="project-details">
+        @for (item of backend_projects; track item.id){
+            @if (item.id === selectedProjectId) {
+                <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
+            }
+        }
+    </div>
+</div>
   </div>
+
+
+<div class="tasks-container">
+    <div class="tasklist">
+        <app-tasklist [name]="selectedUser.username" [userId]="selectedUserId" [projectId]="selectedProjectId" [tasks]="backend_tasks"></app-tasklist>
+    </div>
+</div>
+  </div>
+
 
 </div>
 
@@ -56,3 +68,4 @@
 }
 
 </main>
+</div>

@@ -18,9 +18,18 @@ export class Api {
     return this.http.get(`${this.BASE_URL}projects/project_of_user/${user_id}/`);
   }
 
-  getTasks(): Observable<any> {
-    return this.http.get(this.BASE_URL + 'tasks/');
+  getTasks(user_id: string): Observable<any> {
+    // return this.http.get(this.BASE_URL + 'tasks/task_list/');
+    return this.http.get(`${this.BASE_URL}tasks/task_of_user/${user_id}/`);
   }
 
-      //login
+
+  addNewTask(taskData: any): Observable<any> {
+  return this.http.post(this.BASE_URL + "tasks/task_list/", taskData);
+}
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.BASE_URL}users/token/`, {username,password} );
+  }
+
 }

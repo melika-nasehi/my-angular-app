@@ -8,8 +8,8 @@ export const DUMMY_PROJECTS = [
     access : 'PB',
     category : 'TM',
     is_archived : true,
-    start_date : '2025-09-01',
-    end_date : '2025-10-01',
+    startDate : '2025-09-01',
+    endDate : '2025-10-01',
     theme : 'red',
   },
   {
@@ -19,8 +19,8 @@ export const DUMMY_PROJECTS = [
     access : 'PV',
     category : 'WR',
     is_archived : false,
-    start_date : '2025-09-05',
-    end_date : '2025-10-07',
+    startDate : '2025-09-05',
+    endDate : '2025-10-07',
     theme : 'black',
   },
   {
@@ -30,8 +30,8 @@ export const DUMMY_PROJECTS = [
     access : 'PB',
     category : 'TM',
     is_archived : false,
-    start_date : '2025-09-22',
-    end_date : '2025-11-01',
+    startDate : '2025-09-22',
+    endDate : '2025-11-01',
     theme : 'white',
   },
   {
@@ -41,8 +41,8 @@ export const DUMMY_PROJECTS = [
     access : 'PB',
     category : 'PR',
     is_archived : false,
-    start_date : '2025-09-01',
-    end_date : '2026-04-01',
+    startDate : '2025-09-01',
+    endDate : '2026-04-01',
     theme : 'green',
   },
 ]

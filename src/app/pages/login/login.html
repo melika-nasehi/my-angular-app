@@ -1,0 +1,9 @@
+<div class="login-box">
+  <h2>ورود به سیستم</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <input type="text" name="username" [(ngModel)]="username" placeholder="نام کاربری" required>
+    <input type="password" name="password" [(ngModel)]="password" placeholder="رمز عبور" required>
+    <button type="submit" [disabled]="!loginForm.form.valid">ورود</button>
+    <button type="guest" >ورود به عنوان مهمان</button>
+  </form>
+</div>

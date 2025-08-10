@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { project_inteface } from '../project.model';
 import { DatePipe } from '@angular/common';
 import { user_interface } from '../../user/user.model';
+import { TaskList } from "../../tasklist/tasklist";
 
 @Component({
   selector: 'app-project-details',
-  imports: [DatePipe],
+  imports: [DatePipe, TaskList],
   templateUrl: './project-details.html',
   styleUrl: './project-details.css'
 })

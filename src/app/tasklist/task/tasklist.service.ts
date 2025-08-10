@@ -1,44 +1,85 @@
-import { Injectable } from "@angular/core"
+import { Injectable, OnInit } from "@angular/core"
 import { DUMMY_TASKS } from "../../dummy-tasks"
-import { new_task_interface } from "./task.model"
+import { new_task_interface, task_interface } from "./task.model"
 import { DUMMY_USERS } from "../../dummy-users"
 import { DUMMY_PROJECTS } from "../../dummy-projects"
+import { Api } from "../../services/api"
+import { profile_interface, user_interface } from "../../user/user.model"
+import { project_inteface } from "../../project/project.model"
+import { Observable, forkJoin, tap, map } from "rxjs"
 
 
 @Injectable({ providedIn: "root" })
 export class TasksService {
 
-dummy_tasks = DUMMY_TASKS
-dummy_users = DUMMY_USERS
-dummy_projects = DUMMY_PROJECTS
 
-constructor(){
-    
+constructor(private api: Api){
 }
 
-// getUserTask(userId : string) {
-//     return this.dummy_tasks.filter((task)=> task.users.some(user => user.id === userId))
-// }
+backend_tasks: task_interface[] = [];
+backend_users: user_interface[] = [];
+backend_projects: project_inteface[] = [];
+  
+    // loadBackendData(): Observable<void> {
+    
+    // }
 
-AddNewTask(enetered_task : new_task_interface , userId : string, projectID:string){
 
-    const founded_user = this.dummy_users.find((user)=> (user.id.toString()) === userId )
-    const founded_project = this.dummy_projects.find((proj)=> proj.id === projectID )
-    if (!founded_user || !founded_project)
-        return
+getUserTask(userId : string) {
+    return this.backend_tasks.filter((task)=> task.users.some(user => user.id === userId))
+}
 
-    this.dummy_tasks.push({
-      id: 'newTask_' + new Date().getTime().toString(),
-      title: enetered_task.title ,
-      users: [founded_user],
-      project : founded_project,
-      completed : false ,
-      deadline : enetered_task.deadline,
-      status : 'NS',
-      start_date: new Date().getDate().toString(),
-      completed_date : '',
-    })
-   }
+AddNewTask(entered_task: new_task_interface, userId: string, projectID: string) {
+  this.api.getUsers().subscribe({
+    next: (users) => {
+      this.backend_users = users;
+      const founded_user = this.backend_users.find(user => user.id.toString() === userId);
+      if (!founded_user) {
+        console.error("User not found");
+        return;
+      }
+
+      this.api.getProjects(userId).subscribe({
+        next: (projects) => {
+          this.backend_projects = projects;
+          const founded_project = this.backend_projects.find(proj => proj.id.toString() === projectID);
+          if (!founded_project) {
+            console.error("Project not found");
+            return;
+          }
+
+          const newTaskPayload = {
+            title: entered_task.title,
+            status: "NS",
+            start_date: new Date().toISOString().split('T')[0],
+            deadline: entered_task.deadline,
+            project: founded_project.id,
+            users: [founded_user.id]
+          };
+
+          this.api.addNewTask(newTaskPayload).subscribe({
+            next: (newTask) => {
+              console.log("Task saved in backend:", newTask);
+              this.backend_tasks.push(newTask);
+            },
+            error: (err) => {
+              console.error("Error saving task:", err);
+            }
+          });
+        },
+        error: (err) => {
+          console.error("Error loading projects:", err);
+        }
+      });
+    },
+    error: (err) => {
+      console.error("Error loading users:", err);
+    }
+  });
+}
+
+
+
 
 completeTask(taskId : string){
     //console.log("salam")

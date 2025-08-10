@@ -81,3 +81,7 @@ p{
 .project-details {
   margin-top: 0rem;
 }
+
+.tasks-container{
+  flex: row-;
+}

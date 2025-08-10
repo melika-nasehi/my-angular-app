@@ -1,29 +1,36 @@
 import { Injectable } from '@angular/core';
-import { user_interface } from './user/user.model';
-import { DUMMY_USERS } from './dummy-users';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+interface User {
+  id: string;
+  username: string;
+  token: string;
+  role: string;  // admin یا user
+}
+
+@Injectable({providedIn: 'root'})
 export class AuthService {
-  private currentUser?: user_interface;
+  currentUser = new BehaviorSubject<User | null>(null);
 
-//   login(userId: string): boolean {
-//     const user = DUMMY_USERS.find(u => u.id === userId);
-//     if (user) {
-//       this.currentUser = user;
-//       return true;
-//     }
-//     return false;
-//   }
+  constructor(private http: HttpClient) {}
 
-  logout(): void {
-    this.currentUser = undefined;
+  login(username: string, password: string): Observable<User> {
+    return this.http.post<User>('/api/login', {username, password}).pipe(
+      tap(user => {
+        localStorage.setItem('token', user.token);
+        this.currentUser.next(user);
+      })
+    );
   }
 
-  getCurrentUser(): user_interface | undefined {
-    return this.currentUser;
+  logout() {
+    localStorage.removeItem('token');
+    this.currentUser.next(null);
   }
 
-//   isAdmin(): boolean {
-//     return this.currentUser?.user_name === 'admin'; // فرض می‌کنیم نقش admin اینطوری مشخص شده
-//   }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

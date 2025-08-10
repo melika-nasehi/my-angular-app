@@ -12,12 +12,19 @@ import { profile_interface, user_interface } from './user/user.model';
 import { DUMMY_PROJECTS } from './dummy-projects';
 import { ProjectTab } from "./project/project_tab/project_tab";
 import { ProjectDetails } from "./project/project-details/project-details";
-import { AuthService } from './auth.service';
+// import { AuthService } from './auth.service';
 import { Api } from './services/api';
+import { TasksService } from './tasklist/task/tasklist.service';
+// import { ReactiveFormsModule } from '@angular/forms';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { Login } from "./pages/login/login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, User, TaskList, Task, ProjectTab, ProjectDetails],
+  imports: [RouterOutlet, HeaderComponent, User, TaskList, Task, ProjectTab,
+    ProjectDetails, Login,NgIf,NgFor],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -36,47 +43,39 @@ export class App implements OnInit{
 
   //constructor(private authService: AuthService) {}
 
-  constructor(private api: Api) { }
+  constructor(private api: Api, private taskService: TasksService) { }
 
   backend_users: user_interface[] = [];
 
+  isLoggedIn: boolean = false;
+
   ngOnInit(): void {
-  this.api.getUsers().subscribe({
-    next: (data) => {
-      console.log("Data from backend:", data);
-      this.backend_users = data;
-    },
-    error: (err) => {
-      console.error("Error loading users:", err);
-      }
-    });
+    const token = localStorage.getItem('access');
+    this.isLoggedIn = !!token;
+
+    if (this.isLoggedIn) {
+      this.api.getUsers().subscribe({
+        next: (data) => {
+          console.log("Data from backend:", data);
+          this.backend_users = data;
+        },
+        error: (err) => {
+          console.error("Error loading users:", err);
+        }
+      });
+    }
   }
 
+  logout() {
+  localStorage.removeItem('access');
+  localStorage.removeItem('refresh');
+  this.isLoggedIn = false;
+  window.location.href = '/login';
+  }
+
+
   backend_projects: any[] = [];
-
-
-
-
-
-//   ngOnInit() {
-//   const currentUser = this.authService.getCurrentUser();
-
-//   if (!currentUser) {
-//     // اگر کاربر لاگین نشده، مثلاً لیست را خالی کن
-//     this.usersToShow = [];
-//     return;
-//   }
-
-//   if (this.authService.isAdmin()) {
-//     // اگر ادمین است، همه کاربران را نشان بده
-//     this.usersToShow = this.users_dummy;
-//   } else {
-//     // اگر کاربر عادی است، فقط خودش را نشان بده
-//     this.usersToShow = this.users_dummy.filter(u => u.id === currentUser.id);
-//     this.selectedUserId = currentUser.id;  // خودکار انتخاب شود
-//     this.selectedProjectId = '';           // پروژه انتخاب شده را خالی کن
-//   }
-// }
+  backend_tasks: any[] = [];
 
 
   onSelectUser(id: string){
@@ -84,6 +83,7 @@ export class App implements OnInit{
     this.selectedUserId = id
     this.selectedProjectId = ''
 
+    //projects
     this.api.getProjects(id).subscribe({
     next: (projects) => {
       this.backend_projects = projects;
@@ -92,6 +92,17 @@ export class App implements OnInit{
     error: (err) => {
       console.error('Error loading projects:', err);
       this.backend_projects = [];
+      }
+    });
+
+    //tasks
+    this.api.getTasks(id).subscribe({
+    next: (data) => {
+      console.log("tasks Data from backend:", data);
+      this.backend_tasks = data;
+    },
+    error: (err) => {
+      console.error("Error loading tasks:", err);
       }
     });
   }

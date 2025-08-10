@@ -9,7 +9,7 @@ export interface user_interface {
 
 export interface profile_interface {
     user_id : string
-    avatar : string
+    profile_image : string
     bio : string
     skills : string
 }
