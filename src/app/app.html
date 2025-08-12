@@ -5,67 +5,54 @@
 
 <app-header></app-header>
 <!-- <router-outlet></router-outlet> -->
- <button (click)="logout()" *ngIf="isLoggedIn">خروج</button>
+<button id="logout" (click)="logout()" *ngIf="isLoggedIn">log out</button>
 
 
 <main>
-  <ul id="users">
-  <h1>users</h1>
-  @for (item of backend_users; track item.id) {
-    <li>
-      <app-user [user]="item" 
-              [selected]="(item.id.toString()) === selectedUserId"
-              (select)="onSelectUser($event)">
-    </app-user>
-    </li>
-  }
-</ul>
+  <section id="users-section">
+    <h1>Users</h1>
+    <ul id="users">
+      @for (item of backend_users; track item.id) {
+        <li>
+          <app-user [user]="item" 
+                    [selected]="item.id.toString() === selectedUserId"
+                    (select)="onSelectUser($event)">
+          </app-user>
+        </li>
+      }
+    </ul>
+  </section>
 
-@if (selectedUser){
-  <div class="tabs-container">
-  <h2>{{selectedUser.username}}'s projects :</h2>
-
-  <div class="row">
-      <div>
-      <div class="tabs-row">
-    @for (item of backend_projects; track item.id){
-      <!-- @if(isUserInProject(item.users)) { -->
-        <app-project-tab
-          [project]="item"
-          [selected]="item.id === selectedProjectId"
-          (select)="onSelectProject($event)">
+  <section id="projects-section" *ngIf="selectedUser">
+    <h2>{{selectedUser.username}}'s projects :</h2>
+    <div class="tabs-row">
+      @for (item of backend_projects; track item.id) {
+        <app-project-tab [project]="item"
+                         [selected]="item.id === selectedProjectId"
+                         (select)="onSelectProject($event)">
         </app-project-tab>
-      <!-- } -->
-    }
-  </div>
+      }
+    </div>
 
-  <div class="projects-container">
     <div class="project-details">
-        @for (item of backend_projects; track item.id){
-            @if (item.id === selectedProjectId) {
-                <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
-            }
+      @for (item of backend_projects; track item.id) {
+        @if (item.id === selectedProjectId) {
+          <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
         }
+      }
     </div>
-</div>
-  </div>
+  </section>
 
+  <section id="tasks-section" *ngIf="selectedUser && selectedProjectId">
+    <h2>Tasks for {{selectedUser.username}} </h2>
+    <app-tasklist [name]="selectedUser.username" 
+                  [userId]="selectedUserId" 
+                  [projectId]="selectedProjectId" 
+                  [tasks]="backend_tasks">
+    </app-tasklist>
+  </section>
 
-<div class="tasks-container">
-    <div class="tasklist">
-        <app-tasklist [name]="selectedUser.username" [userId]="selectedUserId" [projectId]="selectedProjectId" [tasks]="backend_tasks"></app-tasklist>
-    </div>
-</div>
-  </div>
-
-
-</div>
-
-  <!-- <app-tasklist [name]="selectedUser.first_name" [userId]="selectedUserId" [projectId]="selectedProjectId"></app-tasklist> -->
-}
-@else {
-  <p id="fallback">select a user</p>
-}
-
+  <p *ngIf="!selectedUser" id="fallback">Select a user</p>
 </main>
+
 </div>

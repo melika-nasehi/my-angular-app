@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { booleanAttribute, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { User } from '../user/user';
 import { Task } from "./task/task";
 import { DUMMY_USERS } from '../dummy-users';
@@ -16,7 +16,7 @@ import { Api } from '../services/api';
   templateUrl: './tasklist.html',
   styleUrl: './tasklist.css'
 })
-export class TaskList{
+export class TaskList implements OnInit,OnChanges{
    @Input({required:true}) name?:string
    @Input({required:true}) userId! : string
    @Input({required:true}) projectId! : string
@@ -24,21 +24,21 @@ export class TaskList{
   @Input() tasks!: any[]
 
 
-  constructor(){}
-
-  ngOnInit(): void {
-    //task
-        
-  }
+  constructor(public taskService : TasksService){}
 
   
-  //  get selectedUserTask(){
-  //   return this.taskService.getUserTask(this.userId)
-  //  }
 
-  //  getUserTask(userId : string) {
-  //   return this.backend_tasks.filter((task)=> task.users.some(user => user.id === userId))
-  // }
+  ngOnInit(): void {
+      this.taskService.getTasksForUser(this.userId);  
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId'] && !changes['userId'].firstChange) {
+      console.log("User changed → Reload tasks");
+      this.taskService.getTasksForUser(this.userId);
+    }
+  }
+
 
    onNewTask(){
     this.isAddingNewTask = true
@@ -47,5 +47,26 @@ export class TaskList{
    onCloseNewTask(){
     this.isAddingNewTask = false
    }
+
+   onSortDeadline(){
+      this.taskService.sortTaskDeadline(this.userId)
+   }
+
+   currentPage: number = 1;
+
+goToNextPage() {
+  if (this.taskService.nextPageUrl) {
+    this.currentPage++;
+    this.taskService.getTasksForUser(this.userId, this.currentPage);
+  }
+}
+
+goToPrevPage() {
+  if (this.taskService.prevPageUrl && this.currentPage > 1) {
+    this.currentPage--;
+    this.taskService.getTasksForUser(this.userId, this.currentPage);
+  }
+}
+
 
 }

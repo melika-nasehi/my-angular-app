@@ -1,9 +1,9 @@
 <div class="login-box">
-  <h2>ورود به سیستم</h2>
+  <h2>Task Manager System</h2>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <input type="text" name="username" [(ngModel)]="username" placeholder="نام کاربری" required>
-    <input type="password" name="password" [(ngModel)]="password" placeholder="رمز عبور" required>
-    <button type="submit" [disabled]="!loginForm.form.valid">ورود</button>
-    <button type="guest" >ورود به عنوان مهمان</button>
+    <input type="text" name="username" [(ngModel)]="username" placeholder="username" required>
+    <input type="password" name="password" [(ngModel)]="password" placeholder="password" required>
+    <button id="submit" type="submit" [disabled]="!loginForm.form.valid">login</button>
+    <button id="guest" type="guest" >Enter as a guest</button>
   </form>
 </div>

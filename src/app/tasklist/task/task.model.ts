@@ -19,5 +19,6 @@ export interface task_interface {
 export interface new_task_interface {
   title : string
   deadline : string
+  project_id : string
 }
 

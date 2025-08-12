@@ -1,0 +1,43 @@
+.login-box{
+    background-color: aliceblue;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 60vh;
+    margin-left:30%;
+    margin-top: 6%;
+    padding: 5.5rem;
+    gap:1rem ;
+    border: solid 10px #b8c1ec;
+    border-radius: 25px;
+    
+}
+h2{
+    color: #232946;
+}
+
+button{
+    font: inherit;
+    color: #232946;
+    background-color: #eebbc3;
+    border: solid 3px #eebbc3;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    margin: 5%;
+    padding: 0.25rem;
+}
+
+#guest{
+    background-color:#b8c1ec ;
+    border: solid 3px #b8c1ec;
+}
+
+input{
+    color: #232946;
+    background-color: #b8c1ec5b;
+    margin: 5%;
+}

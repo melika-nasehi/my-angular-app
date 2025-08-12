@@ -85,3 +85,34 @@ p{
 .tasks-container{
   flex: row-;
 }
+ 
+main {
+  display: flex;          
+  flex-direction: row;    
+  gap: 2rem;              
+  width: 90%;             
+  margin: 2.5rem auto;    
+  max-width: 90rem;      
+}
+
+#users-section, #projects-section, #tasks-section {
+  flex: 1 1 0;
+  max-width: 33%; 
+  min-width: 250px; 
+  background-color: #232946; 
+  padding: 1rem;       
+  border-radius: 6px;  
+  color:#232946;     
+  overflow-y: auto;      
+  max-height: 600px;  
+}
+
+#logout {
+  font: inherit;
+  color: #232946;
+  background-color: #eebbc3;
+  border: solid 3px #eebbc3;
+  border-radius: 6px;
+  padding: 0.4rem 2rem;
+
+}

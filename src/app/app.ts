@@ -81,13 +81,14 @@ export class App implements OnInit{
   onSelectUser(id: string){
     //console.log("selected user id : " + id) ;
     this.selectedUserId = id
-    this.selectedProjectId = ''
+    //this.selectedProjectId = ''
 
     //projects
     this.api.getProjects(id).subscribe({
     next: (projects) => {
       this.backend_projects = projects;
       console.log('Projects for user:', projects);
+      this.selectedProjectId = this.backend_projects[0].id
     },
     error: (err) => {
       console.error('Error loading projects:', err);
