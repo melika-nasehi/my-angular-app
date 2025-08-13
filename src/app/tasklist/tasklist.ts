@@ -7,12 +7,14 @@ import { NewTask } from "./new-task/new-task";
 import { new_task_interface, task_interface } from './task/task.model';
 import { TasksService } from './task/tasklist.service';
 import { Api } from '../services/api';
+import { FormsModule } from '@angular/forms';
+
 
 
 
 @Component({
   selector: 'app-tasklist',
-  imports: [Task, NewTask],
+  imports: [Task, NewTask, FormsModule],
   templateUrl: './tasklist.html',
   styleUrl: './tasklist.css'
 })
@@ -26,16 +28,22 @@ export class TaskList implements OnInit,OnChanges{
 
   constructor(public taskService : TasksService){}
 
-  
+  searchTerm: string = '';
+  ordering:string=''
+
+  onSearch() {
+    this.currentPage = 1;
+    this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
+  }
 
   ngOnInit(): void {
-      this.taskService.getTasksForUser(this.userId);  
+      this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['userId'] && !changes['userId'].firstChange) {
       console.log("User changed → Reload tasks");
-      this.taskService.getTasksForUser(this.userId);
+      this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
     }
   }
 
@@ -49,7 +57,13 @@ export class TaskList implements OnInit,OnChanges{
    }
 
    onSortDeadline(){
-      this.taskService.sortTaskDeadline(this.userId)
+    if (this.ordering === ''){
+      this.ordering = 'deadline'
+    }
+    else if (this.ordering === 'deadline'){
+      this.ordering = ''
+    }
+    this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
    }
 
    currentPage: number = 1;
@@ -57,14 +71,14 @@ export class TaskList implements OnInit,OnChanges{
 goToNextPage() {
   if (this.taskService.nextPageUrl) {
     this.currentPage++;
-    this.taskService.getTasksForUser(this.userId, this.currentPage);
+    this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
   }
 }
 
 goToPrevPage() {
   if (this.taskService.prevPageUrl && this.currentPage > 1) {
     this.currentPage--;
-    this.taskService.getTasksForUser(this.userId, this.currentPage);
+    this.taskService.getTasksForUser(this.userId, this.currentPage, this.ordering, this.searchTerm);
   }
 }
 

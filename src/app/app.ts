@@ -97,15 +97,16 @@ export class App implements OnInit{
     });
 
     //tasks
-    this.api.getTasks(id).subscribe({
-    next: (data) => {
-      console.log("tasks Data from backend:", data);
-      this.backend_tasks = data;
-    },
-    error: (err) => {
-      console.error("Error loading tasks:", err);
-      }
-    });
+    // this.api.getTasks(id).subscribe({
+    // next: (data) => {
+    //   console.log("tasks Data from backend:", data);
+    //   this.backend_tasks = data;
+    // },
+    // error: (err) => {
+    //   console.error("Error loading tasks:", err);
+    //   }
+    // });
+    // this.taskService.getTasksForUser(this.selectedUserId,1)
   }
 
   onSelectProject(id:string){

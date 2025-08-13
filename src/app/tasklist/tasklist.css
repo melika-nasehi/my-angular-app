@@ -45,7 +45,18 @@ menu button:active {
   color: #232946;
   background-color: #eebbc3;
   border : 3px solid #eebbc3 ;
-    
+}
+
+#sorted{
+  background-color: #eebbc3;
+  color: #232946;
+}
+
+input{
+  color: #232946;
+  background-color: #fffffe;
+  margin: 0;
+  padding: 3%;
 }
 
 ul {

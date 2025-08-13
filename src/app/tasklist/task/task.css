@@ -25,10 +25,7 @@ time {
   color: #fffffe;
   border-radius: 4px;
   padding: 0.5rem 1.5rem;
-  border : 3px solid #fffffe ;
-
-
-  
+  border : 3px solid #fffffe ;  
 }
 
 .actions button:hover,

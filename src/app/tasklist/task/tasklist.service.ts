@@ -30,9 +30,9 @@ prevPageUrl: string | null = null;
     // }
 
 
-getUserTask(userId : string) {
-    return this.backend_tasks.filter((task)=> task.users.some(user => user.id === userId))
-}
+// getUserTask(userId : string) {
+//     return this.backend_tasks.filter((task)=> task.users.some(user => user.id === userId))
+// }
 
 AddNewTask(entered_task: new_task_interface, userId: string) {
   this.api.getUsers().subscribe({
@@ -103,20 +103,20 @@ completeTask(taskId : string){
 //   });
 // }
 
-sortTaskDeadline(user_id: string, page: number = 1) {
-  this.api.sortTaskDeadline(user_id, page).subscribe({
-    next: (response: any) => {
-      this.backend_tasks = response.results;
-      this.totalTasks = response.count;
-      this.nextPageUrl = response.next;
-      this.prevPageUrl = response.previous;
-      console.log("Sorted tasks:", this.backend_tasks);
-    },
-    error: (err) => {
-      console.error('Error sorting tasks:', err);
-    }
-  });
-}
+// sortTaskDeadline(user_id: string, page: number = 1) {
+//   this.api.sortTaskDeadline(user_id, page).subscribe({
+//     next: (response: any) => {
+//       this.backend_tasks = response.results;
+//       this.totalTasks = response.count;
+//       this.nextPageUrl = response.next;
+//       this.prevPageUrl = response.previous;
+//       console.log("Sorted tasks:", this.backend_tasks);
+//     },
+//     error: (err) => {
+//       console.error('Error sorting tasks:', err);
+//     }
+//   });
+// }
 
 
 // getTasksForUser(user_id: string) {
@@ -131,8 +131,9 @@ sortTaskDeadline(user_id: string, page: number = 1) {
 //   });
 // }
 
-getTasksForUser(user_id: string, page: number = 1) {
-  this.api.getTasks(user_id, page).subscribe({
+getTasksForUser(user_id: string, page: number = 1, ordering:string='', search:string='') {
+  console.log("this works")
+  this.api.getTasks(user_id, page, ordering, search).subscribe({
     next: (response: any) => {
       this.backend_tasks = response.results;
       this.totalTasks = response.count;

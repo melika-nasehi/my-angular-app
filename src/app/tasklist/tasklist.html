@@ -8,15 +8,23 @@
         <h2>{{name}}'s tasks :</h2>
         <menu>
                 <button (click)="onNewTask()">Add new Task</button>
-                <button id="sort" (click)="onSortDeadline()">sort by deadline</button>
+                @if (ordering ==='deadline') {
+                        <button id="sorted" (click)="onSortDeadline()">sorted by deadline</button>
+                }
+                @else {
+                        <button id="sort" (click)="onSortDeadline()">sort by deadline</button>
+                }
+                <input id="search" [(ngModel)]="searchTerm" placeholder="search a task" (keyup.enter)="onSearch()">
+                <button id="search" (click)="onSearch()">search</button>
         </menu>
 </header>
 
 <ul> 
         
    @for (item of taskService.backend_tasks ; track item.id){
-
+        <p>mlkmflkmflk</p>
    <li>
+        salam
         <app-task [task]="item" ></app-task>
    </li>
    }

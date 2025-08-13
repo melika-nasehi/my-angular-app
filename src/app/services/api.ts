@@ -19,9 +19,9 @@ export class Api {
     return this.http.get(`${this.BASE_URL}projects/project_of_user/${user_id}/`);
   }
 
-  getTasks(user_id: string, page:number=1): Observable<any> {
+  getTasks(user_id: string, page:number=1, ordering:string='', search:string=''): Observable<any> {
     // return this.http.get(this.BASE_URL + 'tasks/task_list/');
-    return this.http.get(`${this.BASE_URL}tasks/task_of_user/${user_id}/?page=${page}`);
+    return this.http.get(`${this.BASE_URL}tasks/tasks/?user_id=${user_id}&page=${page}&ordering=${ordering}&search=${search}`);
   }
 
 
