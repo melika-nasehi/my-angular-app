@@ -25,14 +25,6 @@ totalTasks: number = 0;
 nextPageUrl: string | null = null;
 prevPageUrl: string | null = null;
   
-    // loadBackendData(): Observable<void> {
-    
-    // }
-
-
-// getUserTask(userId : string) {
-//     return this.backend_tasks.filter((task)=> task.users.some(user => user.id === userId))
-// }
 
 AddNewTask(entered_task: new_task_interface, userId: string) {
   this.api.getUsers().subscribe({
@@ -89,47 +81,6 @@ completeTask(taskId : string){
     const task = DUMMY_TASKS.find((item) => item.id === taskId);
     if (task) task.completed = !task.completed;
 } 
-
-// sortTaskDeadline(user_id:string) {
-//   console.log("salam khobi")
-//   this.api.sortTaskDeadline(user_id).subscribe({
-//     next: (sortedTasks) => {
-//       this.backend_tasks = sortedTasks;
-//       console.log('Sorted tasks:', sortedTasks);
-//     },
-//     error: (err) => {
-//       console.error('Error sorting tasks:', err);
-//     }
-//   });
-// }
-
-// sortTaskDeadline(user_id: string, page: number = 1) {
-//   this.api.sortTaskDeadline(user_id, page).subscribe({
-//     next: (response: any) => {
-//       this.backend_tasks = response.results;
-//       this.totalTasks = response.count;
-//       this.nextPageUrl = response.next;
-//       this.prevPageUrl = response.previous;
-//       console.log("Sorted tasks:", this.backend_tasks);
-//     },
-//     error: (err) => {
-//       console.error('Error sorting tasks:', err);
-//     }
-//   });
-// }
-
-
-// getTasksForUser(user_id: string) {
-//   this.api.getTasks(user_id).subscribe({
-//     next: (tasks) => {
-//       this.backend_tasks = tasks;
-//       console.log("Tasks loaded:", tasks);
-//     },
-//     error: (err) => {
-//       console.error("Error loading tasks:", err);
-//     }
-//   });
-// }
 
 getTasksForUser(user_id: string, page: number = 1, ordering:string='', search:string='') {
   console.log("this works")

@@ -1,11 +1,11 @@
 import { Component, signal, OnInit  } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { User } from "./user/user";
 import {DUMMY_USERS} from './dummy-users' ;
 import { TaskList } from "./tasklist/tasklist";
 import { DUMMY_TASKS } from './dummy-tasks';
-import {NgFor, NgIf} from '@angular/common'
+import {CommonModule, NgFor, NgIf} from '@angular/common'
 import { Task } from './tasklist/task/task';
 import { DUMMY_PROFILES } from './dummy_profiles';
 import { profile_interface, user_interface } from './user/user.model';
@@ -23,7 +23,8 @@ import { Login } from "./pages/login/login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, User, TaskList, Task, ProjectTab,
+  standalone:true ,
+  imports: [RouterOutlet,CommonModule, HeaderComponent, User, TaskList, Task, ProjectTab,
     ProjectDetails, Login,NgIf,NgFor],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -43,7 +44,7 @@ export class App implements OnInit{
 
   //constructor(private authService: AuthService) {}
 
-  constructor(private api: Api, private taskService: TasksService) { }
+  constructor(private api: Api, private taskService: TasksService, private router : Router) { }
 
   backend_users: user_interface[] = [];
 
@@ -72,6 +73,12 @@ export class App implements OnInit{
   this.isLoggedIn = false;
   window.location.href = '/login';
   }
+
+
+goToDashboard(){
+  this.router.navigate(['/dashboard'])
+  console.log("dashbooooard")
+}
 
 
   backend_projects: any[] = [];
