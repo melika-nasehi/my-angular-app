@@ -3,5 +3,7 @@
   <div class="title-group">
     <h1>EasyTask</h1>
     <p>Tasks are more easy with EasyTask!</p>
+    <p *ngIf="username">Welcome, {{ username }}!</p>
+    <button (click)="logout()">Logout</button>
   </div>
 </header>

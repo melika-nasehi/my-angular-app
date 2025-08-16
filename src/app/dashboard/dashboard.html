@@ -1,1 +1,7 @@
 <p>dashboard works!</p>
+<div *ngIf="user">
+  <p>Username: {{ user.username }}</p>
+  <p>Bio: {{ user.bio }}</p>
+  <p>Skills: {{ user.skills }}</p>
+  <img [src]="user.profile_image" alt="Profile Image" *ngIf="user.profile_image">
+</div>

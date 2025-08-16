@@ -1,32 +1,21 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Api } from '../../services/api';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css']
 })
-
 export class Login {
   username: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private api:Api) {}
+  constructor(private auth: AuthService) {}
 
-   onSubmit() {
-    this.api.login(this.username, this.password).subscribe({
-      next: (res) => {
-        localStorage.setItem('access', res.access);
-        localStorage.setItem('refresh', res.refresh);
-        window.location.reload();
-      },
-      error: () => {
-        alert('نام کاربری یا رمز عبور اشتباه است');
-      }
-    });
+  onSubmit() {
+    this.auth.login(this.username, this.password);
   }
-
 }

@@ -3,13 +3,10 @@
 
 <div *ngIf="isLoggedIn">
 
-<app-header></app-header>
-<router-outlet></router-outlet>
-<button id="logout" (click)="logout()" *ngIf="isLoggedIn">log out</button>
-<button id="dashboard" (click)="goToDashboard()">dashboard</button>
+  <router-outlet></router-outlet>
+  <!-- <p>this is app component</p> -->
 
-
-<main>
+<!-- <main>
   <section id="users-section">
     <h1>Users</h1>
     <ul id="users">
@@ -54,6 +51,6 @@
   </section>
 
   <p *ngIf="!selectedUser" id="fallback">Select a user</p>
-</main>
+</main> -->
 
 </div>

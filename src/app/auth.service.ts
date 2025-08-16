@@ -1,36 +1,75 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Api } from './services/api';
+import { Router } from '@angular/router';
 
 interface User {
   id: string;
   username: string;
   token: string;
-  role: string;  // admin یا user
+  role: string;
+  profile_image?: string;
+  bio?: string;
+  skills?: string;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   currentUser = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: Api, private router: Router) {
+    const token = localStorage.getItem('access');
+    if (token) {
+      this.loadUserProfile();
+    }
+  }
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.post<User>('/api/login', {username, password}).pipe(
-      tap(user => {
-        localStorage.setItem('token', user.token);
+  login(username: string, password: string): void {
+    this.api.login(username, password).subscribe({
+      next: res => {
+        localStorage.setItem('access', res.access);
+        localStorage.setItem('refresh', res.refresh);
+        this.loadUserProfile();
+        this.router.navigate(['/home']);
+      },
+      error: err => {
+        console.error('Login error in service:', err);
+      }
+    });
+  }
+
+  loadUserProfile() {
+    this.api.getUserProfile().subscribe({
+      next: (response) => {
+        const profile = response.results?.[0] || {};
+        const user: User = {
+          id: profile.id || 'unknown',
+          username: profile.username || 'Guest',
+          token: localStorage.getItem('access') || '',
+          role: profile.role || 'user',
+          profile_image: profile.profile_image,
+          bio: profile.bio,
+          skills: profile.skills
+        };
         this.currentUser.next(user);
-      })
-    );
+        console.log('User profile loaded:', user);
+      },
+      error: (err) => {
+        console.error('Error loading profile', err);
+        this.logout();
+      }
+    });
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
     this.currentUser.next(null);
+    this.router.navigate(['/login']);
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('access');
   }
 }

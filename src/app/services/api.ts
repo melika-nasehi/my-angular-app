@@ -37,4 +37,14 @@ export class Api {
     return this.http.get(`${this.BASE_URL}users/sort_task_deadline/${user_id}/?page=${page}`)
   }
 
+
+  getUserProfile(): Observable<any> {
+    const token = localStorage.getItem('access');
+    console.log('token:',token)
+    return this.http.get(`${this.BASE_URL}users/profile/`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  }
+
+
 }
