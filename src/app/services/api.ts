@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { task_interface } from '../tasklist/task/task.model';
 
@@ -11,8 +11,14 @@ export class Api {
 
   constructor(private http: HttpClient) {}
 
+  // getUsers(): Observable<any> {
+  //   return this.http.get(this.BASE_URL + 'users/users_list/');
+  // }
+
   getUsers(): Observable<any> {
-    return this.http.get(this.BASE_URL + 'users/users_list/');
+    const token = localStorage.getItem('access');
+    const headers = new HttpHeaders({  'Authorization': `Bearer ${token}`  });
+    return this.http.get(this.BASE_URL + 'users/users_list/', { headers: headers });
   }
 
   getProjects(user_id:string): Observable<any> {
@@ -26,7 +32,8 @@ export class Api {
 
 
   addNewTask(taskData: any): Observable<any> {
-  return this.http.post(this.BASE_URL + "tasks/task_list/", taskData);
+    const token = localStorage.getItem('access');
+    return this.http.post(this.BASE_URL + "tasks/tasks/", taskData , {headers:{Authorization: `Bearer ${token}`}});
 }
 
   login(username: string, password: string): Observable<any> {
@@ -37,13 +44,17 @@ export class Api {
     return this.http.get(`${this.BASE_URL}users/sort_task_deadline/${user_id}/?page=${page}`)
   }
 
-
   getUserProfile(): Observable<any> {
     const token = localStorage.getItem('access');
     console.log('token:',token)
     return this.http.get(`${this.BASE_URL}users/profile/`, {
       headers: { Authorization: `Bearer ${token}` }
     });
+  }
+
+  toggleCompleted(task_id:string){
+    const token = localStorage.getItem('access');
+    return this.http.post(`${this.BASE_URL}tasks/toggle_completed/${task_id}/`,{}, {headers:{Authorization: `Bearer ${token}`}});
   }
 
 

@@ -1,6 +1,12 @@
 <!-- <p>home works!</p> -->
 
 <app-header></app-header>
-<button id="logout" (click)="logout()" *ngIf="isLoggedIn">log out</button>
+<h2>menu</h2>
 <button id="dashboard" (click)="goToDashboard()">dashboard</button>
+<!-- <button id="projects" (click)="" > see projects</button>
+<button id="tasks" (click)="" > see tasks</button> -->
+<button id="admin" (click)="onAdminPanel()" *ngIf="isAdmin">panel admin</button>
+<button id="logout" (click)="logout()" *ngIf="isLoggedIn">log out</button>
+
+
 

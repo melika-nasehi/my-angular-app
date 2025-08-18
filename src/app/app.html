@@ -4,53 +4,6 @@
 <div *ngIf="isLoggedIn">
 
   <router-outlet></router-outlet>
-  <!-- <p>this is app component</p> -->
-
-<!-- <main>
-  <section id="users-section">
-    <h1>Users</h1>
-    <ul id="users">
-      @for (item of backend_users; track item.id) {
-        <li>
-          <app-user [user]="item" 
-                    [selected]="item.id.toString() === selectedUserId"
-                    (select)="onSelectUser($event)">
-          </app-user>
-        </li>
-      }
-    </ul>
-  </section>
-
-  <section id="projects-section" *ngIf="selectedUser">
-    <h2>{{selectedUser.username}}'s projects :</h2>
-    <div class="tabs-row">
-      @for (item of backend_projects; track item.id) {
-        <app-project-tab [project]="item"
-                         [selected]="item.id === selectedProjectId"
-                         (select)="onSelectProject($event)">
-        </app-project-tab>
-      }
-    </div>
-
-    <div class="project-details">
-      @for (item of backend_projects; track item.id) {
-        @if (item.id === selectedProjectId) {
-          <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
-        }
-      }
-    </div>
-  </section>
-
-  <section id="tasks-section" *ngIf="selectedUser && selectedProjectId">
-    <h2>Tasks for {{selectedUser.username}} </h2>
-    <app-tasklist [name]="selectedUser.username" 
-                  [userId]="selectedUserId" 
-                  [projectId]="selectedProjectId" 
-                  [tasks]="backend_tasks">
-    </app-tasklist>
-  </section>
-
-  <p *ngIf="!selectedUser" id="fallback">Select a user</p>
-</main> -->
+      
 
 </div>

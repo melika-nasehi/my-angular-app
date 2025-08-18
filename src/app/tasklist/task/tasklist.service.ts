@@ -30,7 +30,7 @@ AddNewTask(entered_task: new_task_interface, userId: string) {
   this.api.getUsers().subscribe({
     next: (users) => {
       this.backend_users = users;
-      const founded_user = this.backend_users.find(user => user.id.toString() === userId);
+      const founded_user = this.backend_users.find(user => user.id === userId);
       if (!founded_user) {
         console.error("User not found");
         return;
@@ -39,7 +39,8 @@ AddNewTask(entered_task: new_task_interface, userId: string) {
       this.api.getProjects(userId).subscribe({
         next: (projects) => {
           this.backend_projects = projects;
-          const founded_project = this.backend_projects.find(proj => proj.id.toString() === entered_task.project_id);
+          const founded_project = this.backend_projects.find(proj => proj.id.toString() === entered_task.project_id.toString());
+          console.log("test",founded_project)
           if (!founded_project) {
             console.error("Project not found");
             return;
@@ -53,6 +54,7 @@ AddNewTask(entered_task: new_task_interface, userId: string) {
             project: entered_task.project_id,
             users: [founded_user.id]
           };
+          console.log("new",newTaskPayload)
 
           this.api.addNewTask(newTaskPayload).subscribe({
             next: (newTask) => {
@@ -76,11 +78,23 @@ AddNewTask(entered_task: new_task_interface, userId: string) {
 }
 
 
-completeTask(taskId : string){
-    //console.log("salam")
-    const task = DUMMY_TASKS.find((item) => item.id === taskId);
-    if (task) task.completed = !task.completed;
-} 
+
+completeTask(taskId: string) {
+  this.api.toggleCompleted(taskId).subscribe({
+    next: (response) => {
+      console.log('Task toggled successfully in backend:', response);
+      
+      const taskIndex = this.backend_tasks.findIndex(t => t.id === taskId);
+      if (taskIndex !== -1) {
+        this.backend_tasks[taskIndex].is_completed = !this.backend_tasks[taskIndex].is_completed;
+      }
+    },
+    error: (err) => {
+      console.error('Error toggling task:', err);
+    }
+  });
+}
+
 
 getTasksForUser(user_id: string, page: number = 1, ordering:string='', search:string='') {
   console.log("this works")

@@ -3,9 +3,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Api } from './services/api';
 import { Router } from '@angular/router';
+import { catchError, map, of } from 'rxjs';
 
 interface User {
   id: string;
+  user_id:string,
   username: string;
   token: string;
   role: string;
@@ -45,6 +47,7 @@ export class AuthService {
         const profile = response.results?.[0] || {};
         const user: User = {
           id: profile.id || 'unknown',
+          user_id : profile.user_id || 'null',
           username: profile.username || 'Guest',
           token: localStorage.getItem('access') || '',
           role: profile.role || 'user',
@@ -72,4 +75,14 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('access');
   }
+
+  
+
+  checkIsAdmin(): Observable<boolean> {
+    return this.api.getUsers().pipe(   
+      map(() => true),                 
+      catchError(() => of(false))  
+    );
+  }
+  
 }

@@ -3,13 +3,13 @@
         <p>task id : {{task.id}}</p>
         <p>user id : {{task.users}}</p>
         <p>deadline : {{ task.deadline | date : 'fullDate' }}</p>
-        @if (task.completed) {
+        @if (task.is_completed) {
             <p id="completed">completed</p>
             <p class="actions">
                 <button (click)="onCompleteTask()">uncomplete</button>
             </p>
         }
-        @else {
+        @else if(!task.is_completed){
             <p id="not_completed">not completed</p>
             <p class="actions">
                 <button (click)="onCompleteTask()">complete</button>

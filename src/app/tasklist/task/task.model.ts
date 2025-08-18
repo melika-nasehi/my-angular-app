@@ -8,7 +8,7 @@ export interface task_interface {
   title : string
   users : user_interface[]
   project : project_inteface
-  completed : boolean
+  is_completed : boolean
   deadline : string
   status : string //'CM' | 'IP' | 'NS'
   start_date : string

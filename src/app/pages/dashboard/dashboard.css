@@ -1,0 +1,156 @@
+:host {
+  display: block;
+  background-color: #232946;
+  color: #fffffe;
+  font-family: inherit;
+  padding: 2rem;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #232946;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 5px solid #333d5f;
+}
+
+.dashboard-header img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #eebbc3;
+  object-fit: cover;
+}
+
+.user-details p {
+  margin: 0;
+  color: #b8c1ec;
+}
+
+.user-details .username {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fffffe;
+}
+
+.user-details .bio {
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.user-details .skills {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.action-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.action-buttons button {
+  font: inherit;
+  font-weight: 600;
+  color: #232946;
+  background-color: #eebbc3;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-buttons button:hover {
+  background-color: #d8a0ac;
+  transform: translateY(-2px);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 90rem;
+  margin: 2.5rem auto;
+}
+
+@media (min-width: 1024px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#projects-section,
+#tasks-section {
+  background-color: #232946;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 5px solid #333d5f;
+  display: flex;
+  flex-direction: column;
+}
+
+section h2 {
+  color: #fffffe;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  border-bottom: 2px solid #eebbc3;
+  padding-bottom: 0.75rem;
+}
+
+.tabs-row {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #eebbc3 #333d5f;
+}
+
+.project-details {
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+app-tasklist {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #eebbc3 #232946;
+}
+
+#fallback {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #b8c1ec;
+  padding: 3rem;
+  border: 1px dashed #333d5f;
+  border-radius: 12px;
+}
+
+
+#add-project {
+  font: inherit;
+  cursor: pointer;
+  color: #eebbc3;
+  background-color: #232946;
+  border : 3px solid #eebbc3;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#add-project:hover,
+#add-project:active {
+  color: #232946;
+  background-color: #eebbc3;
+  border : 3px solid #eebbc3 ;
+}
