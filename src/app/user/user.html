@@ -1,6 +1,14 @@
-<div>
-    <button  [class.active]="selected" (click) = "onSelectorUser()">
-        <!-- <img [src]="imagePath" [alt]="user.user_name" /> -->
-        <span>{{ user.username }}  </span>
-    </button>
-</div>
+
+<button [class.active]="selected" (click)="onSelectorUser()">
+  
+ 
+  <!-- <span class="user-avatar" 
+        [style.backgroundImage]="'url(' + (user.profile_image || 'assets/default-avatar.png') + ')'">
+  </span> -->
+  <span class="user-avatar" 
+        [style.backgroundImage]="'url(' + 'assets/default-avatar.png' + ')'">
+  </span>
+
+  <span class="username">{{ user.username }}</span>
+
+</button>

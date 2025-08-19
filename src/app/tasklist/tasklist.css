@@ -1,84 +1,23 @@
-#tasks {
-  padding: 1rem;
-  border-radius: 8px;
-  max-height: 60vh;
-  overflow: auto;
-  background-color: #232946;
-  border: 3px solid #fffffe ;
-}
+/* در فایل tasklist.component.css */
 
-header {
+#tasks header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
-
-h2 {
-  margin: 0;
-  font-size: 0.9rem;
-  width: 60%;
-  text-wrap: balance;
-  color: #fffffe;
-}
-
-menu {
-  margin: 0;
-  padding: 0;
-}
-
-menu button {
-  font: inherit;
-  cursor: pointer;
-  color: #eebbc3;
-  background-color: #232946;
-  border : 3px solid #eebbc3 ;
-  border-radius: 4px;
-  padding: 0.35rem 0.8rem ;
-  margin-bottom: 1rem ;
-  font-size: 1rem;
-}
-
-menu button:hover,
-menu button:active {
-  color: #232946;
-  background-color: #eebbc3;
-  border : 3px solid #eebbc3 ;
-}
-
-#sorted{
-  background-color: #eebbc3;
-  color: #232946;
-}
-
-input{
-  color: #232946;
-  background-color: #fffffe;
-  margin: 0;
-  padding: 3%;
-}
-
-ul {
-  list-style: none;
-  margin: 1rem 0;
-  padding: 0;
+#tasks header h2 { margin: 0; }
+#tasks header menu {
   display: flex;
-  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+#tasks header input { padding: 0.5rem; border: 1px solid var(--jira-border); border-radius: 5px; }
+#tasks ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  max-height: 50vh;
-  overflow: auto;
+  margin-top: 2rem;
 }
-
-@media (min-width: 768px) {
-  h2 {
-    font-size: 1.25rem;
-  }
-
-  menu {
-    width: auto;
-  }
-}
-
-/* ------------------------------ */
-

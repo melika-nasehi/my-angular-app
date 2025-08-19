@@ -1,71 +1,96 @@
+/* در فایل header.component.css */
+
 header {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between; /* آیتم‌ها را در دو طرف هدر پخش می‌کند */
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--jira-card-bg, #FFFFFF);
+  border-bottom: 1px solid var(--jira-border, #DFE1E6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* -- بخش لوگو و عنوان -- */
+.logo-area {
+  display: flex;
   align-items: center;
   gap: 1rem;
-  width: 90%;
-  max-width: 50rem;
-  margin: 0 auto 2rem auto;
-  text-align: center;
-  background: #b8c1ec;
-  padding: 1rem;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border: 3px solid #fffffe;
-  border-top: none;
 }
 
-img {
-  width: 3.5rem;
-  object-fit: contain;
+.logo-area img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px; /* گوشه‌های گرد برای لوگو */
 }
 
-.title-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* یا center، بسته به نیاز طراحی */
-}
-
-h1 {
+.title-group h1 {
   font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--jira-text, #172B4D);
   margin: 0;
-  padding: 0;
 }
 
-p {
+.title-group p {
+  font-size: 0.9rem;
+  color: var(--jira-text-subtle, #5E6C84);
   margin: 0;
-  font-size: 0.8rem;
-  text-wrap: balance;
 }
 
-@media (min-width: 768px) {
+/* -- بخش کاربر و خروج -- */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--jira-text-subtle, #5E6C84);
+}
+
+.user-area strong {
+  color: var(--jira-text, #172B4D);
+  font-weight: 600;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--jira-danger, #DE350B);
+  border: 1px solid var(--jira-border, #DFE1E6);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: var(--jira-danger, #DE350B);
+  color: white;
+  border-color: var(--jira-danger, #DE350B);
+}
+
+.logout-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  /* آیکون خروج با استفاده از CSS */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'%3E%3C/path%3E%3Cpolyline points='16 17 21 12 16 7'%3E%3C/polyline%3E%3Cline x1='21' y1='12' x2='9' y2='12'%3E%3C/line%3E%3C/svg%3E");
+  background-size: contain;
+  transition: filter 0.2s ease;
+}
+
+.logout-button:hover .logout-icon {
+  filter: invert(1); /* رنگ آیکون را در حالت هاور، سفید می‌کند */
+}
+
+/* -- طراحی واکنش‌گرا برای موبایل -- */
+@media (max-width: 600px) {
   header {
-    padding: 2rem;
+    flex-direction: column;
+    gap: 1rem;
   }
-
-  img {
-    width: 8.5rem;
+  .title-group p {
+    display: none; /* در موبایل، زیرعنوان را مخفی کن تا فضا باز شود */
   }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-}
-button{
-  font: inherit;
-  color: #232946;
-  background-color: #eebbc3;
-  border: solid 3px #eebbc3;
-  border-radius: 6px;
-  padding: 0.4rem 2rem;
-  margin-top: 1rem;
-}
-
-h3{
-  color: #eebbc3;
-  font : inherit , bold;
-  margin: 0;
-  margin-bottom: 2rem;
-  margin-left: 1rem;
-
 }

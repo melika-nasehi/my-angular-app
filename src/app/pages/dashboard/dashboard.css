@@ -1,156 +1,134 @@
-:host {
-  display: block;
-  background-color: #232946;
-  color: #fffffe;
-  font-family: inherit;
-  padding: 2rem;
-}
+/* در فایل dashboard.component.css */
 
-.dashboard-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: #232946;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  border: 5px solid #333d5f;
-}
+:host { display: block; height: 100vh; overflow: hidden; }
 
-.dashboard-header img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid #eebbc3;
-  object-fit: cover;
-}
-
-.user-details p {
-  margin: 0;
-  color: #b8c1ec;
-}
-
-.user-details .username {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #fffffe;
-}
-
-.user-details .bio {
-  font-style: italic;
-  margin-top: 4px;
-}
-
-.user-details .skills {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-.action-buttons {
-  margin-left: auto;
-  display: flex;
-  gap: 1rem;
-}
-
-.action-buttons button {
-  font: inherit;
-  font-weight: 600;
-  color: #232946;
-  background-color: #eebbc3;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.action-buttons button:hover {
-  background-color: #d8a0ac;
-  transform: translateY(-2px);
-}
-
-main {
+.dashboard-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  width: 100%;
-  max-width: 90rem;
-  margin: 2.5rem auto;
+  grid-template-columns: 260px 1fr; /* عرض سایدبار و بقیه فضا برای محتوا */
+  height: 100%;
 }
 
-@media (min-width: 1024px) {
-  main {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-#projects-section,
-#tasks-section {
-  background-color: #232946;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 5px solid #333d5f;
+/* -- استایل سایدبار -- */
+.dashboard-sidebar {
+  background-color: var(--jira-card-bg, #FFFFFF);
+  border-right: 1px solid var(--jira-border, #DFE1E6);
   display: flex;
   flex-direction: column;
+  padding: 1.5rem 1rem;
 }
 
-section h2 {
-  color: #fffffe;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 1.5rem 0;
-  border-bottom: 2px solid #eebbc3;
-  padding-bottom: 0.75rem;
-}
-
-.tabs-row {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #eebbc3 #333d5f;
-}
-
-.project-details {
-  flex-grow: 1;
-  padding-right: 10px;
-}
-
-app-tasklist {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #eebbc3 #232946;
-}
-
-#fallback {
-  font-weight: bold;
-  font-size: 1.25rem;
+.sidebar-profile {
   text-align: center;
-  color: #b8c1ec;
-  padding: 3rem;
-  border: 1px dashed #333d5f;
-  border-radius: 12px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--jira-border);
 }
+.sidebar-profile img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+.sidebar-profile h4 { font-size: 1.2rem; margin: 0; }
+.sidebar-profile p { color: var(--jira-text-subtle); margin: 0.25rem 0 0; }
 
-
-#add-project {
-  font: inherit;
+.main-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+.main-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--jira-text-subtle);
   cursor: pointer;
-  color: #eebbc3;
-  background-color: #232946;
-  border : 3px solid #eebbc3;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin-left: 2rem;
-  margin-bottom: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.main-nav a:hover { background-color: #F4F5F7; }
+.main-nav a.active {
+  background-color: var(--jira-highlight, #DEEBFF);
+  color: var(--jira-primary, #0052CC);
+  font-weight: 600;
+}
+/* آیکون‌ها را با SVG های خود جایگزین کنید */
+.nav-icon { width: 20px; height: 20px; background-size: contain; opacity: 0.7; }
+.main-nav a.active .nav-icon { opacity: 1; }
+.projects-icon { background-image: url('/icons/project.png'); }
+.tasks-icon { background-image: url('/icons/task.png'); }
+
+.sidebar-actions { margin-top: auto; } /* دکمه را به پایین می‌چسباند */
+.sidebar-actions button { width: 100%; }
+
+/* -- استایل محتوای اصلی -- */
+.dashboard-content {
+  padding: 2rem 2.5rem;
+  overflow-y: auto; /* اسکرول فقط برای این بخش */
+  background-color: var(--jira-bg);
+}
+.dashboard-content section { background-color: transparent; padding: 0; }
+.dashboard-content h2 { border-bottom: none; font-size: 2rem; }
+
+.placeholder {
+  text-align: center;
+  margin-top: 5rem;
+  color: var(--jira-text-subtle);
 }
 
-#add-project:hover,
-#add-project:active {
-  color: #232946;
-  background-color: #eebbc3;
-  border : 3px solid #eebbc3 ;
+/* در فایل dashboard.component.css */
+
+.button-icon {
+  display: inline-block;
+  width: 18px; /* اندازه آیکون */
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* تعریف آیکون "+" با استفاده از SVG */
+.plus-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
+}
+
+/* در فایل dashboard.component.css */
+
+/* ... استایل‌های قبلی شما ... */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+  background-color: var(--jira-card-bg, #FFFFFF);
+  border-radius: 8px;
+  border: 2px dashed var(--jira-border, #DFE1E6);
+}
+
+.empty-state-icon {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  opacity: 0.4;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--jira-text, #172B4D);
+}
+
+.empty-state p {
+  color: var(--jira-text-subtle, #5E6C84);
+  margin-bottom: 2rem;
+}
+
+.empty-state button {
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
 }

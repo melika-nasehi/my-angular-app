@@ -20,16 +20,23 @@ export class Home {
 
   constructor(private router: Router,private api:Api, private auth:AuthService) {}
 
+  username: string = '';
 
+  
   ngOnInit(): void {
   const token = localStorage.getItem('access');
   this.isLoggedIn = !!token;
 
+  
   if (this.isLoggedIn) {
     this.auth.checkIsAdmin().subscribe((result) => {
       this.isAdmin = result;
     });
   }
+  this.auth.currentUser.subscribe(user => {
+      this.username = user ? user.username : '';
+    });
+    
 }
 
 

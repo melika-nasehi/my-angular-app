@@ -1,11 +1,21 @@
+<!-- در فایل header.component.html -->
+
 <header>
-  <img src="task_management.png" alt="to-do-list">
-  <div class="title-group">
-    <h1>EasyTask</h1>
-    <p>Tasks are more easy with EasyTask!</p>
-    <!-- <h4 *ngIf="username">Welcome, {{ username }}!</h4> -->
-    <button (click)="logout()">Logout</button>
+  <!-- بخش لوگو و عنوان -->
+  <div class="logo-area">
+    <img src="task_management.png" alt="EasyTask Logo">
+    <div class="title-group">
+      <h1>EasyTask</h1>
+      <p>Your daily tasks, simplified.</p>
+    </div>
+  </div>
+
+  <!-- بخش اطلاعات کاربر و خروج -->
+  <div class="user-area" *ngIf="username">
+    <span>Welcome, <strong>{{ username }}</strong>!</span>
+    <button class="logout-button" (click)="logout()">
+      <span class="logout-icon"></span> <!-- آیکون خروج -->
+      Logout
+    </button>
   </div>
 </header>
-<h3 *ngIf="username">Welcome, {{ username }}!</h3>
-

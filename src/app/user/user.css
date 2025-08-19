@@ -1,46 +1,63 @@
-div {
-  border-radius: 3px;
-  /*box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);*/
-  overflow: hidden;
+/* در فایل app-user.component.css */
 
+:host {
+  display: block;
 }
 
 button {
-  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.5rem;
-  background-color: #232946;
-  color: #b8c1ec;
-  border: 3px solid #fffffe;
-  font: inherit;
-  cursor: pointer;
-  width: 100%;
-  min-width: 10rem;
-  text-align: left;
+  gap: 0.75rem; /* فاصله بین آواتار و نام */
   
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  border: 2px solid transparent; /* یک حاشیه نامرئی برای جلوگیری از پرش در هاور */
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--jira-text-subtle, #5E6C84);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-button:hover,
-button:active,
-.active {
-  background-color: #b8c1ec;
-  color: black; 
-  font: inherit , bold;
+button:hover {
+  background-color: var(--jira-highlight, #DEEBFF);
+  color: var(--jira-primary, #0052CC);
 }
 
-img {
-  width: 2rem;
-  object-fit: contain;
+/* استایل حالت انتخاب شده (Active) */
+button.active {
+  background-color: var(--jira-primary, #0052CC);
+  color: white;
+  font-weight: 600;
+  border-color: var(--jira-primary-hover, #0065FF);
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+}
+
+/* استایل آواتار کاربر */
+.user-avatar {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  /*border: 3px solid #b8c1ec;*/
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0; /* جلوگیری از کوچک شدن آواتار */
+  border: 2px solid var(--jira-border, #DFE1E6);
+  transition: border-color 0.2s ease;
 }
 
-span {
-  margin: 0;
-  padding: 0;
-  font-size: 0.8rem;
-  font-weight: normal;
+button:hover .user-avatar {
+  border-color: var(--jira-primary, #0052CC);
+}
+
+button.active .user-avatar {
+  border-color: white;
+}
+
+.username {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

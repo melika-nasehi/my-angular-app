@@ -26,10 +26,11 @@ export class Dashboard implements OnInit {
   isClickedProject : boolean = false
   isClickedTask : boolean = false
   isAddingProject :boolean = false
-
   allUsers: user_interface[] = [];
 
-  constructor(private auth: AuthService, private api:Api) {}
+  activeView: 'projects' | 'tasks' | 'none' = 'none';
+
+  constructor(private auth: AuthService, private api: Api) {}
 
   ngOnInit() {
     this.auth.currentUser.subscribe(user => {
@@ -38,49 +39,41 @@ export class Dashboard implements OnInit {
 
     this.api.getUsers().subscribe({
       next: (users) => {
-        this.allUsers = users.results || users; // اگر paginated است
-        console.log('All users loaded once:', this.allUsers);
+        this.allUsers = users.results || users;
       },
       error: (err) => {
         console.error('Failed to load users initially', err);
       }
     });
-
   }
 
-  getSelectedProfile(){
-    return this.backend_profile.find((prof) => prof.user_id === this.user.user_id);
+  showProjects() {
+    this.activeView = 'projects';
+    
+    if (this.user?.user_id) {
+      this.api.getProjects(this.user.user_id).subscribe({
+        next: (projects) => {
+          this.backend_projects = projects.results || projects; 
+          if (this.backend_projects.length > 0) {
+            this.selectedProjectId = this.backend_projects[0].id;
+          } else {
+            this.selectedProjectId = '';
+          }
+        },
+        error: (err) => {
+          console.error('Error loading projects:', err);
+          this.backend_projects = [];
+        }
+      });
+    }
   }
 
-  showProjects(){
-    this.isClickedProject = true
-    console.log("user_id",this.user.user_id)
-    this.api.getProjects(this.user.user_id).subscribe({
-      next: (projects) => {
-        this.backend_projects = projects;
-        console.log('Projects for user:', this.backend_projects);
-        this.selectedProjectId = this.backend_projects[0].id;
-      },
-      error: (err) => {
-        console.error('Error loading projects:', err);
-        this.backend_projects = [];
-      }
-    });
-  }
+  showTasks() {
+    this.activeView = 'tasks';
 
-  showTasks(){
-    this.isClickedTask = true
-    console.log("user_id",this.user.user_id)
-    this.api.getTasks(this.user.user_id).subscribe({
-      next: (tasks) => {
-        this.backend_tasks = tasks;
-        console.log('tasks for user:', this.backend_tasks);
-      },
-      error: (err) => {
-        console.error('Error loading tasks:', err);
-        this.backend_tasks = [];
-      }
-    });
+    if (this.user?.user_id) {
+      console.log('Task view is now active.');
+    }
   }
 
   onSelectProject(id: string) {
@@ -100,8 +93,7 @@ export class Dashboard implements OnInit {
     ).filter(Boolean);
   }
 
-  onNewProject(){
-    this.isAddingProject = true
+  onNewProject() {
+    this.isAddingProject = true;
   }
-
 }

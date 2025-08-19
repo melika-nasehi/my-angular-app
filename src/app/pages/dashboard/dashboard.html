@@ -1,52 +1,82 @@
-@if (isAddingProject){
-   <!-- <app-new-task [userID]="userId"
-   (close)="onCloseNewTask()" [projectID]="projectId" ></app-new-task> -->
-   <app-new-project [userID]="user.user_id" ></app-new-project>
-}
 
-<div *ngIf="user" class="dashboard-header">
-  <img [src]="user.profile_image || 'users_pic/user-1.jpg'" alt="Profile Image">
+<div class="dashboard-container">
   
-  <div class="user-details">
-    <p class="username">{{ user.username }}</p>
-    <p class="bio">bio : {{ user.bio }}</p>
-    <p class="skills"><b>Skills: </b> {{ user.skills }}</p>
+  <aside class="dashboard-sidebar" *ngIf="user">
+    
+    <div class="sidebar-profile">
+      <img [src]="user.profile_image || 'users_pic/user-2.jpg'" alt="Profile">
+      <h4>{{ user.username }}</h4>
+      <p>{{ user.role === 'MN' ? 'Manager' : 'User' }}</p>
+    </div>
+
+    <nav class="main-nav">
+  <a (click)="showProjects()" [class.active]="activeView === 'projects'">
+    <span class="nav-icon projects-icon"></span> Projects
+  </a>
+  <a (click)="showTasks()" [class.active]="activeView === 'tasks'">
+    <span class="nav-icon tasks-icon"></span> Tasks
+  </a>
+</nav>
+    
+  <div class="sidebar-actions">
+    <button class="primary" (click)="onNewProject()">
+      <span class="button-icon plus-icon"></span> 
+      Start a New Project
+    </button>
   </div>
-  
-  <div class="action-buttons">
-    <button id="projects" (click)="showProjects()">Show Projects</button>
-    <button id="tasks" (click)="showTasks()">Show Tasks</button>
-  </div>
+
+  </aside>
+
+  <main class="dashboard-content">
+    
+    <!-- نمایش بخش پروژه‌ها -->
+    <section *ngIf="activeView === 'projects'">
+      <h2>My Projects</h2>
+       @if (backend_projects.length > 0) {
+      <!-- اگر پروژه وجود داشت، تب‌ها و جزئیات را نمایش بده -->
+      <div class="project-view">
+        <div class="tabs-row">
+          @for (item of backend_projects; track item.id) {
+            <app-project-tab [project]="item"
+                             [selected]="item.id === selectedProjectId"
+                             (select)="onSelectProject($event)"></app-project-tab>
+          }
+        </div>
+        @if (selectedProject) {
+          <app-project-details [project]="selectedProject" [users]="getProjectUsers(selectedProject)"></app-project-details>
+        }
+      </div>
+    } @else {
+      <!-- اگر پروژه‌ای وجود نداشت، این بخش نمایش داده می‌شود -->
+      <div class="empty-state">
+        <span class="empty-state-icon projects-icon"></span>
+        <h3>You don't have any projects yet.</h3>
+        <p>Get started by creating your first project.</p>
+        <button class="primary" (click)="onNewProject()">
+          <span class="button-icon plus-icon"></span>
+          Create New Project
+        </button>
+      </div>
+    }
+
+    </section>
+
+    <!-- نمایش بخش تسک‌ها -->
+    <section *ngIf="activeView === 'tasks'">
+        <h2>My Tasks</h2>
+        @if(user) {
+            <app-tasklist [name]="user.username" 
+                          [userId]="user.user_id" 
+                          [projectId]="selectedProjectId" 
+                          [tasks]="backend_tasks">
+            </app-tasklist>
+        }
+    </section>
+
+  </main>
 </div>
 
-<main>
-  <section id="projects-section" *ngIf="user && isClickedProject">
-    <h2>my Projects</h2>
-    <div class="tabs-row">
-      @for (item of backend_projects; track item.id) {
-        <app-project-tab [project]="item"
-        [selected]="item.id === selectedProjectId"
-        (select)="onSelectProject($event)">
-      </app-project-tab>
-    }
-    <button id="add-project" (click)="onNewProject()">add new project</button>
-    </div>
-
-    <div class="project-details">
-      @if (selectedProject) {
-        <app-project-details [project]="selectedProject" [users]="getProjectUsers(selectedProject)"></app-project-details>
-      }
-    </div>
-  </section>
-
-  <section id="tasks-section" *ngIf="user && isClickedTask">
-    <h2>my Tasks</h2>
-    <app-tasklist [name]="user.username" 
-                  [userId]="user.user_id" 
-                  [projectId]="selectedProjectId" 
-                  [tasks]="backend_tasks">
-    </app-tasklist>
-  </section>
-</main>
-
-<p *ngIf="!user" id="fallback">No user found. Please log in.</p>
+<!-- فرم New Project که به صورت پاپ-آپ باز می‌شود -->
+@if (isAddingProject) {
+  <app-new-project [userID]="user?.user_id" (close)="isAddingProject = false"></app-new-project>
+}

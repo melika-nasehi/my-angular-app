@@ -1,9 +1,41 @@
-<div class="login-box">
-  <h2>Task Manager System</h2>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <input type="text" name="username" [(ngModel)]="username" placeholder="username" required>
-    <input type="password" name="password" [(ngModel)]="password" placeholder="password" required>
-    <button id="submit" type="submit" [disabled]="!loginForm.form.valid">login</button>
-    <button id="guest" type="guest" >Enter as a guest</button>
-  </form>
+<!-- در فایل login.component.html -->
+
+<div class="login-page-wrapper">
+  <div class="login-container">
+    
+    <!-- بخش هدر فرم -->
+    <div class="login-header">
+      <img src="assets/task_management.png" alt="EasyTask Logo">
+      <h2>Welcome Back!</h2>
+      <p>Log in to your EasyTask account.</p>
+    </div>
+
+    <!-- فرم اصلی -->
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" [(ngModel)]="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" [(ngModel)]="password" required>
+      </div>
+
+      <div class="form-actions">
+        <button class="primary" type="submit" [disabled]="!loginForm.form.valid">
+          Log In
+        </button>
+      </div>
+
+    </form>
+
+    <!-- بخش ورود به عنوان مهمان -->
+    <div class="login-footer">
+      <p>or</p>
+      <button class="subtle" type="button">Enter as a Guest</button>
+    </div>
+
+  </div>
 </div>

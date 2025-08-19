@@ -6,13 +6,13 @@
         @if (task.is_completed) {
             <p id="completed">completed</p>
             <p class="actions">
-                <button (click)="onCompleteTask()">uncomplete</button>
+                <button class="subtle" (click)="onCompleteTask()">uncomplete</button>
             </p>
         }
         @else if(!task.is_completed){
             <p id="not_completed">not completed</p>
             <p class="actions">
-                <button (click)="onCompleteTask()">complete</button>
+                <button class="subtle" (click)="onCompleteTask()">complete</button>
             </p>
         }
 </article>

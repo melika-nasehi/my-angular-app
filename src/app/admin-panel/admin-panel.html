@@ -1,45 +1,63 @@
-<main>
-<section id="users-section">
-        <h1>Users</h1>
-        <ul id="users">
-          @for (item of backend_users; track item.id) {
-            <li>
-              <app-user [user]="item" 
-                        [selected]="item.id.toString() === selectedUserId"
-                        (select)="onSelectUser($event)">
-              </app-user>
-            </li>
-          }
-        </ul>
-      </section>
+<!-- HTML برای کامپوننت پنل ادمین -->
 
-      <section id="projects-section" *ngIf="selectedUser">
-        <h2>{{selectedUser.username}}'s projects :</h2>
+<main class="admin-panel-container">
+
+  <!-- ستون اول: لیست کاربران -->
+  <section id="users-section" class="sidebar-column">
+    <h1>Users</h1>
+    <div class="user-list-wrapper">
+      <ul id="users">
+        @for (item of backend_users; track item.id) {
+          <li>
+            <app-user [user]="item" 
+                      [selected]="item.id.toString() === selectedUserId"
+                      (select)="onSelectUser($event)">
+            </app-user>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ستون دوم: محتوای اصلی -->
+  <div class="content-column">
+    @if (selectedUser) {
+      <!-- بخش پروژه‌ها -->
+      <section id="projects-section">
+        <h2>{{selectedUser.username}}'s Projects</h2>
         <div class="tabs-row">
           @for (item of backend_projects; track item.id) {
             <app-project-tab [project]="item"
-                            [selected]="item.id === selectedProjectId"
-                            (select)="onSelectProject($event)">
-            </app-project-tab>
+                             [selected]="item.id === selectedProjectId"
+                             (select)="onSelectProject($event)"></app-project-tab>
           }
         </div>
-
-        <div class="project-details">
-          @for (item of backend_projects; track item.id) {
-            @if (item.id === selectedProjectId) {
-              <app-project-details [project]="item" [users]="getProjectUsers(selectedProject)"></app-project-details>
-            }
-          }
-        </div>
+        @if (selectedProject) {
+          <div class="project-details">
+            <app-project-details [project]="selectedProject" [users]="getProjectUsers(selectedProject)"></app-project-details>
+          </div>
+        }
       </section>
 
-      <section id="tasks-section" *ngIf="selectedUser && selectedProjectId">
-        <h2>Tasks for {{selectedUser.username}} </h2>
-        <app-tasklist [name]="selectedUser.username" 
-                      [userId]="selectedUserId" 
-                      [projectId]="selectedProjectId" 
-                      [tasks]="backend_tasks">
-        </app-tasklist>
-      </section>
-      </main>
-      <!-- <p *ngIf="!selectedUser" id="fallback">Select a user</p> -->
+      <!-- بخش تسک‌ها -->
+      @if (selectedProjectId) {
+        <section id="tasks-section">
+          <h2>Tasks</h2>
+          <app-tasklist [name]="selectedUser.username" 
+                        [userId]="selectedUserId" 
+                        [projectId]="selectedProjectId" 
+                        [tasks]="backend_tasks">
+          </app-tasklist>
+        </section>
+      }
+    } @else {
+      <!-- حالتی که هنوز کاربری انتخاب نشده -->
+      <div class="placeholder">
+        <span class="placeholder-icon"></span>
+        <h3>Select a user from the list</h3>
+        <p>Their projects and tasks will appear here.</p>
+      </div>
+    }
+  </div>
+
+</main>

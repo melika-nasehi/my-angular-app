@@ -1,43 +1,95 @@
-.login-box{
-    background-color: aliceblue;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    width: 60vh;
-    margin-left:30%;
-    margin-top: 6%;
-    padding: 5.5rem;
-    gap:1rem ;
-    border: solid 10px #b8c1ec;
-    border-radius: 25px;
-    
-}
-h2{
-    color: #232946;
+/* در فایل login.component.css */
+
+/* -- کانتینر اصلی برای وسط‌چین کردن فرم در کل صفحه -- */
+.login-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--jira-bg, #F4F5F7);
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-button{
-    font: inherit;
-    color: #232946;
-    background-color: #eebbc3;
-    border: solid 3px #eebbc3;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    margin: 5%;
-    padding: 0.25rem;
+/* -- کارت اصلی فرم لاگین -- */
+.login-container {
+  background-color: var(--jira-card-bg, #FFFFFF);
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(9, 30, 66, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-#guest{
-    background-color:#b8c1ec ;
-    border: solid 3px #b8c1ec;
+/* -- هدر فرم با لوگو و عنوان -- */
+.login-header {
+  margin-bottom: 2rem;
 }
 
-input{
-    color: #232946;
-    background-color: #b8c1ec5b;
-    margin: 5%;
+.login-header img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.login-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--jira-text, #172B4D);
+  margin: 0 0 0.5rem 0;
+}
+
+.login-header p {
+  color: var(--jira-text-subtle, #5E6C84);
+  margin: 0;
+}
+
+/* -- استایل فیلدهای ورودی -- */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--jira-border, #DFE1E6);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--jira-primary, #0052CC);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.2);
+}
+
+/* -- استایل دکمه‌ها -- */
+.form-actions button {
+  width: 100%; /* دکمه لاگین تمام عرض باشد */
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+/* -- فوتر فرم برای اکشن فرعی -- */
+.login-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--jira-border, #DFE1E6);
+}
+
+.login-footer p {
+  margin: 0 0 0.5rem 0;
+  color: var(--jira-text-subtle, #5E6C84);
+  font-size: 0.8rem;
 }
