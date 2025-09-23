@@ -1,8 +1,7 @@
-/* در فایل header.component.css */
 
 header {
   display: flex;
-  justify-content: space-between; /* آیتم‌ها را در دو طرف هدر پخش می‌کند */
+  justify-content: space-between; 
   align-items: center;
   padding: 1rem 2rem;
   background-color: var(--jira-card-bg, #FFFFFF);
@@ -10,7 +9,6 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* -- بخش لوگو و عنوان -- */
 .logo-area {
   display: flex;
   align-items: center;
@@ -20,7 +18,7 @@ header {
 .logo-area img {
   width: 50px;
   height: 50px;
-  border-radius: 8px; /* گوشه‌های گرد برای لوگو */
+  border-radius: 8px; 
 }
 
 .title-group h1 {
@@ -36,7 +34,6 @@ header {
   margin: 0;
 }
 
-/* -- بخش کاربر و خروج -- */
 .user-area {
   display: flex;
   align-items: center;
@@ -74,23 +71,21 @@ header {
   display: inline-block;
   width: 16px;
   height: 16px;
-  /* آیکون خروج با استفاده از CSS */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'%3E%3C/path%3E%3Cpolyline points='16 17 21 12 16 7'%3E%3C/polyline%3E%3Cline x1='21' y1='12' x2='9' y2='12'%3E%3C/line%3E%3C/svg%3E");
   background-size: contain;
   transition: filter 0.2s ease;
 }
 
 .logout-button:hover .logout-icon {
-  filter: invert(1); /* رنگ آیکون را در حالت هاور، سفید می‌کند */
+  filter: invert(1); 
 }
 
-/* -- طراحی واکنش‌گرا برای موبایل -- */
 @media (max-width: 600px) {
   header {
     flex-direction: column;
     gap: 1rem;
   }
   .title-group p {
-    display: none; /* در موبایل، زیرعنوان را مخفی کن تا فضا باز شود */
+    display: none; 
   }
 }

@@ -13,3 +13,9 @@ export interface project_inteface {
     theme :string
 
 }
+
+export interface new_project_interface{
+    title: string
+    startDate : string
+    endDate : string
+}

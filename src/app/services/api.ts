@@ -34,10 +34,15 @@ export class Api {
   addNewTask(taskData: any): Observable<any> {
     const token = localStorage.getItem('access');
     return this.http.post(this.BASE_URL + "tasks/tasks/", taskData , {headers:{Authorization: `Bearer ${token}`}});
-}
+  }
+  
+  addNewProject(projectData: any ) : Observable<any> {
+    const token = localStorage.getItem('access')
+    return this.http.post(this.BASE_URL + "projects/project_list/", projectData , {headers:{Authorization : `Bearer ${token}`}})
+  }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.BASE_URL}users/token/`, {username,password} );
+  login(username: string, password: string , captcha:string): Observable<any> {
+    return this.http.post<any>(`${this.BASE_URL}users/token/`, {username,password,captcha} ,{ withCredentials: true }  );
   }
 
   sortTaskDeadline(user_id: string, page: number) : Observable<any>{

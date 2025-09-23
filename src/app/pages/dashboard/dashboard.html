@@ -29,11 +29,9 @@
 
   <main class="dashboard-content">
     
-    <!-- نمایش بخش پروژه‌ها -->
     <section *ngIf="activeView === 'projects'">
       <h2>My Projects</h2>
        @if (backend_projects.length > 0) {
-      <!-- اگر پروژه وجود داشت، تب‌ها و جزئیات را نمایش بده -->
       <div class="project-view">
         <div class="tabs-row">
           @for (item of backend_projects; track item.id) {
@@ -47,7 +45,6 @@
         }
       </div>
     } @else {
-      <!-- اگر پروژه‌ای وجود نداشت، این بخش نمایش داده می‌شود -->
       <div class="empty-state">
         <span class="empty-state-icon projects-icon"></span>
         <h3>You don't have any projects yet.</h3>
@@ -61,7 +58,6 @@
 
     </section>
 
-    <!-- نمایش بخش تسک‌ها -->
     <section *ngIf="activeView === 'tasks'">
         <h2>My Tasks</h2>
         @if(user) {
@@ -76,7 +72,6 @@
   </main>
 </div>
 
-<!-- فرم New Project که به صورت پاپ-آپ باز می‌شود -->
 @if (isAddingProject) {
   <app-new-project [userID]="user?.user_id" (close)="isAddingProject = false"></app-new-project>
 }

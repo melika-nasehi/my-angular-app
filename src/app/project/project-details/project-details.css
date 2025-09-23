@@ -1,7 +1,6 @@
-/* در فایل project-details.component.css */
 
 .project-details {
-  background-color: #F4F5F7; /* یک پس‌زمینه کمی متفاوت برای تمایز */
+  background-color: #F4F5F7;
   padding: 1.5rem;
   border-radius: 5px;
 }

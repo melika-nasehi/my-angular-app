@@ -4,6 +4,7 @@ import { TasksService } from '../../tasklist/task/tasklist.service';
 import { Api } from '../../services/api';
 import { NgFor } from '@angular/common';
 import { project_inteface } from '../../project/project.model';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-new-project',
@@ -13,39 +14,19 @@ import { project_inteface } from '../../project/project.model';
 })
 export class NewProject {
 
-  projects: project_inteface[] = [];  
-  selectedProjectId!: string;
-
   @Input({required: true}) userID! : string
-
   @Output() close = new EventEmitter<void>()
-  //@Output() create = new EventEmitter<new_task_interface>()
 
   enteredTitle = ''
   enteredStartDate = ''
   enteredEndDate = ''
   entered_users = []
 
-  private taskService = inject(TasksService)
-
-
-  loadProjects() {
-  this.api.getProjects(this.userID).subscribe(projects => {
-    this.projects = projects;
-    // if(this.projects.length > 0) {
-    //   this.entered_project_id = this.projects[0].id;
-    // }
-  });
-}
-
+  private projectService = inject(ProjectService)
 
   constructor(private api : Api) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Parent userId:', this.userID);
-  if (changes['userID'] && this.userID) {
-    this.loadProjects();
-  }
 }
 
   onCancel(){
@@ -55,12 +36,11 @@ export class NewProject {
   onSubmitForm(){
     console.log('userID:', this.userID);
 
-    this.taskService.AddNewTask({
-        title : this.enteredTitle ,
-        deadline : this.enteredStartDate ,
-        project_id : this.enteredEndDate
-      } ,
-    this.userID)
+    this.projectService.addNewProject(this.userID, 
+      {title:this.enteredTitle ,
+       startDate : this.enteredStartDate ,
+       endDate : this.enteredEndDate,
+      } )
 
     this.close.emit()
   }

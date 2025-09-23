@@ -5,11 +5,14 @@ import { NgIf } from '@angular/common';
 import { Api } from '../services/api';
 import { AuthService } from '../auth.service';
 import { user_interface } from '../user/user.model';
+import { RouterLink } from '@angular/router';
+import { Calender } from '../calender/calender';
+import { SideMenu } from "../side-menu/side-menu";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, NgIf],
+  imports: [HeaderComponent, NgIf, RouterLink, Calender, SideMenu],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
@@ -21,6 +24,10 @@ export class Home {
   constructor(private router: Router,private api:Api, private auth:AuthService) {}
 
   username: string = '';
+
+  meetings = {
+    '2025-09-22' : ['final exam' , 'project deadline']
+  }
 
   
   ngOnInit(): void {
@@ -53,5 +60,21 @@ export class Home {
 
    onAdminPanel(){
     this.router.navigate(['/admin_panel'])
+  }
+
+  onProjects(){
+
+  }
+
+  onTasks(){
+
+  }
+
+  onProfile(){
+
+  }
+
+  onSetting(){
+
   }
 }

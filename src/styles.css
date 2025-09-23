@@ -1,6 +1,4 @@
-/* در فایل src/styles.css */
 
-/* -- تعریف متغیرهای رنگی با الهام از سیستم طراحی Atlassian (Jira) -- */
 :root {
   --jira-bg: #F4F5F7;
   --jira-card-bg: #FFFFFF;
@@ -11,7 +9,7 @@
   --jira-primary-hover: #0065FF;
   --jira-success: #00875A;
   --jira-danger: #DE350B;
-  --jira-highlight: #DEEBFF; /* آبی خیلی روشن برای آیتم‌های انتخاب شده */
+  --jira-highlight: #DEEBFF;
 }
 
 body, html {
@@ -23,7 +21,6 @@ body, html {
   color: var(--jira-text);
 }
 
-/* استایل دکمه‌های اصلی */
 button.primary-action {
   background-color: var(--jira-primary);
   color: white;
@@ -38,7 +35,6 @@ button.primary-action:hover {
   background-color: var(--jira-primary-hover);
 }
 
-/* استایل دکمه‌های فرعی */
 button.secondary-action {
   background-color: #F4F5F7;
   color: #42526E;
@@ -53,14 +49,12 @@ button.secondary-action:hover {
   background-color: #EBECF0;
 }
 
-/* در فایل src/styles.css */
 
-/* -- استایل پایه برای همه دکمه‌ها -- */
 button {
-  display: inline-flex; /* برای هم‌راستا کردن آیکون و متن */
+  display: inline-flex; 
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* فاصله بین آیکون و متن */
+  gap: 0.5rem; 
   
   font-family: inherit;
   font-weight: 600;
@@ -70,7 +64,7 @@ button {
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  text-decoration: none; /* برای تگ‌های <a> که شبیه دکمه هستند */
+  text-decoration: none; 
 }
 
 button:disabled {
@@ -78,8 +72,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* -- نوع اول: دکمه اصلی (Primary) -- */
-/* کاربرد: برای مهم‌ترین عمل در یک بخش (مثلاً Create, Save) */
 button.primary {
   background-color: var(--jira-primary, #0052CC);
   color: white;
@@ -90,8 +82,6 @@ button.primary:hover:not(:disabled) {
   box-shadow: 0 4px 8px rgba(0, 82, 204, 0.3);
 }
 
-/* -- نوع دوم: دکمه استاندارد (Standard/Default) -- */
-/* کاربرد: برای اعمال رایج (مثلاً Sort, Search, Show Projects) */
 button.standard {
   background-color: #F4F5F7;
   color: #42526E;
@@ -101,8 +91,6 @@ button.standard:hover:not(:disabled) {
   background-color: #EBECF0;
 }
 
-/* -- نوع سوم: دکمه ظریف (Subtle) -- */
-/* کاربرد: برای اعمال کم‌اهمیت‌تر یا تکراری (مثلاً Cancel, Complete) */
 button.subtle {
   background-color: transparent;
   color: #42526E;
@@ -111,8 +99,6 @@ button.subtle:hover:not(:disabled) {
   background-color: #EBECF0;
 }
 
-/* -- نوع چهارم: دکمه خطر (Danger) -- */
-/* کاربرد: برای اعمال غیرقابل بازگشت (مثلاً Logout, Delete) */
 button.danger {
   background-color: transparent;
   color: var(--jira-danger, #DE350B);

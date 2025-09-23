@@ -1,6 +1,4 @@
-/* در فایل login.component.css */
 
-/* -- کانتینر اصلی برای وسط‌چین کردن فرم در کل صفحه -- */
 .login-page-wrapper {
   display: flex;
   justify-content: center;
@@ -11,7 +9,6 @@
   box-sizing: border-box;
 }
 
-/* -- کارت اصلی فرم لاگین -- */
 .login-container {
   background-color: var(--jira-card-bg, #FFFFFF);
   padding: 2.5rem 3rem;
@@ -22,7 +19,6 @@
   text-align: center;
 }
 
-/* -- هدر فرم با لوگو و عنوان -- */
 .login-header {
   margin-bottom: 2rem;
 }
@@ -45,7 +41,6 @@
   margin: 0;
 }
 
-/* -- استایل فیلدهای ورودی -- */
 .form-group {
   margin-bottom: 1.5rem;
   text-align: left;
@@ -74,14 +69,12 @@
   box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.2);
 }
 
-/* -- استایل دکمه‌ها -- */
 .form-actions button {
-  width: 100%; /* دکمه لاگین تمام عرض باشد */
+  width: 100%; 
   padding: 0.8rem;
   font-size: 1rem;
 }
 
-/* -- فوتر فرم برای اکشن فرعی -- */
 .login-footer {
   margin-top: 1.5rem;
   padding-top: 1.5rem;

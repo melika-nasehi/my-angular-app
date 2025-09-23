@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth.service';
 import { User } from "../../user/user";
@@ -8,10 +8,13 @@ import { TaskList } from "../../tasklist/tasklist";
 import { Api } from '../../services/api';
 import { profile_interface, user_interface } from '../../user/user.model';
 import { NewProject } from "../../project/new-project/new-project";
+import { SideMenu } from "../../side-menu/side-menu";
+import { HeaderComponent } from "../../header/header.component";
+import { ProjectService } from '../../project/project.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, User, ProjectTab, ProjectDetails, TaskList, NewProject],
+  imports: [CommonModule, User, ProjectTab, ProjectDetails, TaskList, NewProject, SideMenu, HeaderComponent],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -31,6 +34,7 @@ export class Dashboard implements OnInit {
   activeView: 'projects' | 'tasks' | 'none' = 'none';
 
   constructor(private auth: AuthService, private api: Api) {}
+  private projectService = inject(ProjectService)
 
   ngOnInit() {
     this.auth.currentUser.subscribe(user => {
@@ -45,6 +49,10 @@ export class Dashboard implements OnInit {
         console.error('Failed to load users initially', err);
       }
     });
+
+    this.projectService.projectsUpdated.subscribe((newProject)=>{
+      this.backend_projects.push(newProject)
+    })
   }
 
   showProjects() {

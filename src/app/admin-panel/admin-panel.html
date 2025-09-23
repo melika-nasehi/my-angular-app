@@ -1,8 +1,6 @@
-<!-- HTML برای کامپوننت پنل ادمین -->
 
 <main class="admin-panel-container">
 
-  <!-- ستون اول: لیست کاربران -->
   <section id="users-section" class="sidebar-column">
     <h1>Users</h1>
     <div class="user-list-wrapper">
@@ -19,10 +17,8 @@
     </div>
   </section>
 
-  <!-- ستون دوم: محتوای اصلی -->
   <div class="content-column">
     @if (selectedUser) {
-      <!-- بخش پروژه‌ها -->
       <section id="projects-section">
         <h2>{{selectedUser.username}}'s Projects</h2>
         <div class="tabs-row">
@@ -39,7 +35,6 @@
         }
       </section>
 
-      <!-- بخش تسک‌ها -->
       @if (selectedProjectId) {
         <section id="tasks-section">
           <h2>Tasks</h2>
@@ -51,7 +46,6 @@
         </section>
       }
     } @else {
-      <!-- حالتی که هنوز کاربری انتخاب نشده -->
       <div class="placeholder">
         <span class="placeholder-icon"></span>
         <h3>Select a user from the list</h3>

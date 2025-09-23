@@ -1,0 +1,59 @@
+<div class="calender-container">
+    <div class="calender">
+        <div class="calender-headline">
+            <div class="calender-headline-month">
+                {{firstDayOfActiveMonth().monthShort}},
+                {{firstDayOfActiveMonth().year}}
+            </div>
+            <div class="calender-headline-controls">
+                <div class="calender-headline-control previous"
+                (click)="goTOPreviousMont()">&lt;previous</div>
+                <div class="calender-headline-control calender-headline-control-today"
+                (click)="goTOToday()">now</div>
+                <div class="calender-headline-control next"
+                (click)="goTONextMont()">next &gt;</div>
+            </div>
+        </div>
+        <div class="calender-weeks-grid">
+            @for (weekDay of weekDays() ; track $index){
+                <div class="calender-weeks-grid-cell">{{ weekDay }}</div>
+            }
+        </div>
+        <div class="calender-grid">
+            @for(dayOfMonth of daysOfMonth() ; track $index){
+                <div [ngClass]="{'calender-grid-cell' : true, 
+                'calender-grid-cell-active' :
+                 activeDay()?.toISODate()=== dayOfMonth.toISODate() ,
+                 'calender-grid-cell-inactive':
+                 dayOfMonth.month !== firstDayOfActiveMonth().month
+                 }"
+
+                (click)="activeDay.set(dayOfMonth)">
+                    {{ dayOfMonth.day }}
+                </div>
+            }
+        </div>
+        <button class="jump-today-button"
+        (click)="jumpToToday()">jump to Today</button>
+    </div>
+    <div class="schedule">
+        <div class="schedule-headline">
+            @if (activeDay()){
+                <div>{{activeDay()?.toLocaleString(DATE_MED)}}</div>
+            }
+            @else{
+                <div>select a day</div>
+            }
+        </div>
+        <div>
+            @if (activeDay() && activeDayMeetings().length===0){
+                <div>nothing for today</div>
+            }
+            @if (activeDay() && activeDayMeetings().length>0){
+                @for (meetings of activeDayMeetings(); track $index) {
+                    <div>{{meetings}}</div>
+                }
+            }
+        </div>
+    </div>
+</div>

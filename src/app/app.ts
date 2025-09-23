@@ -12,12 +12,13 @@ import { ProjectDetails } from "./project/project-details/project-details";
 import { TaskList } from "./tasklist/tasklist";
 import { AuthService } from './auth.service';
 import { AdminPanel } from "./admin-panel/admin-panel";
+import { SideMenu } from "./side-menu/side-menu";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, Login, NgIf, NgFor, User, ProjectTab, ProjectDetails, TaskList, AdminPanel], 
+  imports: [RouterOutlet, CommonModule, Login, NgIf, NgFor, User, ProjectTab, ProjectDetails, TaskList, AdminPanel, SideMenu], 
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

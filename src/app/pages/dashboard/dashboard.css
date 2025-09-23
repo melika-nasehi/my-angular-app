@@ -1,14 +1,12 @@
-/* در فایل dashboard.component.css */
 
 :host { display: block; height: 100vh; overflow: hidden; }
 
 .dashboard-container {
   display: grid;
-  grid-template-columns: 260px 1fr; /* عرض سایدبار و بقیه فضا برای محتوا */
+  grid-template-columns: 260px 1fr;
   height: 100%;
 }
 
-/* -- استایل سایدبار -- */
 .dashboard-sidebar {
   background-color: var(--jira-card-bg, #FFFFFF);
   border-right: 1px solid var(--jira-border, #DFE1E6);
@@ -52,19 +50,17 @@
   color: var(--jira-primary, #0052CC);
   font-weight: 600;
 }
-/* آیکون‌ها را با SVG های خود جایگزین کنید */
 .nav-icon { width: 20px; height: 20px; background-size: contain; opacity: 0.7; }
 .main-nav a.active .nav-icon { opacity: 1; }
 .projects-icon { background-image: url('/icons/project.png'); }
 .tasks-icon { background-image: url('/icons/task.png'); }
 
-.sidebar-actions { margin-top: auto; } /* دکمه را به پایین می‌چسباند */
+.sidebar-actions { margin-top: auto; }
 .sidebar-actions button { width: 100%; }
 
-/* -- استایل محتوای اصلی -- */
 .dashboard-content {
   padding: 2rem 2.5rem;
-  overflow-y: auto; /* اسکرول فقط برای این بخش */
+  overflow-y: auto;
   background-color: var(--jira-bg);
 }
 .dashboard-content section { background-color: transparent; padding: 0; }
@@ -76,25 +72,21 @@
   color: var(--jira-text-subtle);
 }
 
-/* در فایل dashboard.component.css */
 
 .button-icon {
   display: inline-block;
-  width: 18px; /* اندازه آیکون */
+  width: 18px; 
   height: 18px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* تعریف آیکون "+" با استفاده از SVG */
 .plus-icon {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
 }
 
-/* در فایل dashboard.component.css */
 
-/* ... استایل‌های قبلی شما ... */
 
 .empty-state {
   display: flex;

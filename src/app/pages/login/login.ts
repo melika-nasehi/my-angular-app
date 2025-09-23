@@ -12,10 +12,12 @@ import { AuthService } from '../../auth.service';
 export class Login {
   username: string = '';
   password: string = '';
+  captcha:string ='' ;
+  captcha_url = "http://localhost:8000/api/users/captcha/"
 
   constructor(private auth: AuthService) {}
 
   onSubmit() {
-    this.auth.login(this.username, this.password);
+    this.auth.login(this.username, this.password, this.captcha);
   }
 }

@@ -27,8 +27,8 @@ export class AuthService {
     }
   }
 
-  login(username: string, password: string): void {
-    this.api.login(username, password).subscribe({
+  login(username: string, password: string, captcha:string): void {
+    this.api.login(username, password, captcha).subscribe({
       next: res => {
         localStorage.setItem('access', res.access);
         localStorage.setItem('refresh', res.refresh);

@@ -7,10 +7,12 @@ import { AdminPanel } from './admin-panel/admin-panel';
 
 export const routes: Routes = [
     { path : 'login', component:Login, pathMatch:'full'},
-    { path: 'home', component: Home, pathMatch: 'full'},
     { path: 'admin_panel', component: AdminPanel, pathMatch: 'full'},
-    { path: 'dashboard', component: Dashboard },
-    { path: '**', redirectTo: '/login' ,pathMatch:'prefix'},
-    { path: '', redirectTo:'/login', pathMatch:'prefix'}
+    { path: 'dashboard', component: Dashboard ,pathMatch: "full"},
+    { path: 'home', component: Home, pathMatch: 'full'},
+    { path: '', redirectTo:'/login', pathMatch:'full'} ,     //http://localhost:4200/
+    { path: '**', redirectTo: '/login' ,pathMatch:'full'},  //http://localhost:4200/****** */
+
+
 ];
 

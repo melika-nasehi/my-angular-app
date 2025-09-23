@@ -1,7 +1,5 @@
-<!-- در فایل header.component.html -->
 
 <header>
-  <!-- بخش لوگو و عنوان -->
   <div class="logo-area">
     <img src="task_management.png" alt="EasyTask Logo">
     <div class="title-group">
@@ -10,11 +8,10 @@
     </div>
   </div>
 
-  <!-- بخش اطلاعات کاربر و خروج -->
   <div class="user-area" *ngIf="username">
     <span>Welcome, <strong>{{ username }}</strong>!</span>
     <button class="logout-button" (click)="logout()">
-      <span class="logout-icon"></span> <!-- آیکون خروج -->
+      <span class="logout-icon"></span>
       Logout
     </button>
   </div>

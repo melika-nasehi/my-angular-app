@@ -1,27 +1,27 @@
-<!-- در فایل home.component.html -->
 
 <app-header></app-header>
+<div class="parent">
 
+<app-side-menu></app-side-menu>
+
+<div class="center">
 <div class="home-container">
   <h1>Welcome, {{username}}</h1>
   <p class="subtitle">Select an option to get started.</p>
 
   <div class="menu-grid">
-    <!-- کارت داشبورد -->
     <a class="menu-card" (click)="goToDashboard()">
       <div class="menu-card-icon dashboard-icon"></div>
       <h3>Dashboard</h3>
       <p>View projects, tasks, and statistics.</p>
     </a>
 
-    <!-- کارت پنل ادمین (فقط برای ادمین‌ها) -->
     <a class="menu-card" (click)="onAdminPanel()" *ngIf="isAdmin">
       <div class="menu-card-icon admin-icon"></div>
       <h3>Admin Panel</h3>
       <p>Manage users, roles, and permissions.</p>
     </a>
 
-    <!-- کارت خروج -->
     <a class="menu-card logout-card" (click)="logout()" *ngIf="isLoggedIn">
       <div class="menu-card-icon logout-icon"></div>
       <h3>Log Out</h3>
@@ -29,3 +29,15 @@
     </a>
   </div>
 </div>
+
+ <div class="my-projects">
+      my projects
+      </div>
+</div>      
+
+<div class="calender">
+  <app-calender [meetings]="meetings"></app-calender>
+</div>
+
+</div>
+
