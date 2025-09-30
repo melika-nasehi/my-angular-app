@@ -7,6 +7,10 @@ header {
   background-color: var(--jira-card-bg, #FFFFFF);
   border-bottom: 1px solid var(--jira-border, #DFE1E6);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  top: 0px;
+  position: sticky;
+  box-sizing: border-box;
 }
 
 .logo-area {

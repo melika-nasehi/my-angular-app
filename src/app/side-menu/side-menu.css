@@ -4,11 +4,12 @@
   width: 25vh;
   flex-direction: column;
   border-right: solid 1px rgba(128, 128, 128, 0.305);
-  height: 100vh;
-  box-sizing: border-box;
+  height: 730px;
+  box-sizing:border-box;
   flex-shrink: 1;
-  white-space: nowrap;  
-  
+  white-space: nowrap; 
+  background-color: white;
+
 }
 .side-menu-button{
   background-color: rgba(255, 255, 255, 0);
@@ -47,4 +48,8 @@ svg{
 .my-projects{
   text-align: center;
   height: 200px;
+}
+
+.dashboard{
+  margin-top: 20px;
 }

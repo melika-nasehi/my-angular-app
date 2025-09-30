@@ -8,11 +8,12 @@ import { user_interface } from '../user/user.model';
 import { RouterLink } from '@angular/router';
 import { Calender } from '../calender/calender';
 import { SideMenu } from "../side-menu/side-menu";
+import { RecentProjects } from "../project/recent-projects/recent-projects";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, NgIf, RouterLink, Calender, SideMenu],
+  imports: [HeaderComponent, NgIf, RouterLink, Calender, SideMenu, RecentProjects],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
@@ -40,6 +41,7 @@ export class Home {
       this.isAdmin = result;
     });
   }
+  
   this.auth.currentUser.subscribe(user => {
       this.username = user ? user.username : '';
     });

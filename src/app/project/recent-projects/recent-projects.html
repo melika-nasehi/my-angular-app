@@ -1,0 +1,55 @@
+<div class="recent-projects">
+    <div class="header">
+        <p class="header-p">
+            recently created projects
+        </p>
+    </div>
+    @if (selected_projects.length>0) {
+        @for (project of selected_projects; track project.id) {
+            <div class="project-box">
+                <div class="project-box-outside">
+                    <div class="project-box-inside">
+                        <div class="title-div">
+                            <a class="title-a">
+                                <span class="title-icon">
+                                    <img class="recent-project-icon" src="icons\recent-project-happy-cloud.svg">
+                                </span>
+                                <div class="title-text">
+                                    <p class="project-title">{{project.title}}</p>
+                                    <p class="project-category">
+                                        @switch (project.category) {
+                                            @case ("PR") {Personal project}
+                                            @case ("WR") {Work project}
+                                            @case ("TM") {Team project}
+                                        }
+                                        </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="quick-links">
+                            <p class="quick-links-p">Quick links</p>
+                            <a class="tasks">see tasks</a>
+                            <a class="members">see members</a>
+                        </div>
+                        <div class="members-div">
+                            <button class="members-button">
+                                <span>
+                                    <p class="n-members">n members</p>
+                                </span>
+                                <span class="drop-down-icon">
+                                    <svg fill="none" viewBox="-2.66 -2.66 21.32 21.32" role="presentation" class="_1reo15vq _18m915vq _syaz1r31 _lcxvglyw _s7n4yfq0 _vc881r31 _1bsbpxbi _4t3ipxbi">
+                                        <path fill="currentcolor" d="m14.53 6.03-6 6a.75.75 0 0 1-1.004.052l-.056-.052-6-6 1.06-1.06L8 10.44l5.47-5.47z"> 
+                                        </path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @else{
+        you dont have any projects
+    }
+</div>

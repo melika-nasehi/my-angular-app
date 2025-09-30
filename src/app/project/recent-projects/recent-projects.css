@@ -1,0 +1,143 @@
+
+.header{
+    font-weight: bold;
+    font-size:larger;
+    padding-left: 10px;
+}
+
+.project-box{
+    padding: 8px;
+    display: inline-flex;
+}
+
+.project-box-outside{
+    display: inline-flex;
+    border-right: solid 1px rgba(128, 128, 128, 0.355);
+    border-top: solid 1px rgba(128, 128, 128, 0.355);
+    border-bottom: solid 1px rgba(128, 128, 128, 0.355);
+    border-radius: 5px;
+}
+
+.project-box-inside{
+    border-left: solid 20px #CCE0FF;
+    padding-top: 16px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.title-div{
+    text-align: left;
+    margin-right:45px ;
+}
+
+.title-a{
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.title-icon{
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    padding: 2px;
+}
+
+.title-text{
+    margin-left: 25px;
+}
+
+.project-title{
+    margin: 0px;
+    font-size: 15px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.project-category{
+    margin: 0px;
+    font-size: 13px;
+}
+
+.recent-project-icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+svg{
+    width: 20px;
+}
+
+.quick-links{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-right:20px ;
+}
+
+.quick-links-p{
+    color: gray;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 6px;
+    margin-top: 20px;
+    
+}
+
+.tasks{
+    text-align:center;
+    padding-right: 40px;
+    margin-bottom: 5px;
+}
+.tasks:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.245);
+    border-radius: 5px;
+}
+
+.members{
+    text-align: center;
+    padding-right: 10px;
+}
+.members:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.245);
+    border-radius: 5px;
+}
+
+.members-div{
+    border-top: solid 1px rgba(128, 128, 128, 0.293);
+    padding: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: left;
+    
+}
+
+.n-members{
+    margin: 0px;
+}
+
+.members-button{
+    margin-left: 16px;
+    background-color: transparent;
+    gap: 0px;
+    padding-right: 2px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    
+}
+.members-button:hover{
+    background-color: rgba(167, 167, 167, 0.263);
+}
+.members-button::after{
+
+}
+
+.drop-down-icon{
+    position: relative;
+    top:3px;
+}

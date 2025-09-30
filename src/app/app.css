@@ -126,3 +126,10 @@ main {
   padding: 0.4rem 2rem;
   margin-left: 1rem;
 }
+
+.main-content{
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  gap: 10px;
+}

@@ -1,8 +1,9 @@
 
-<app-header></app-header>
 <div class="parent">
 
-<app-side-menu></app-side-menu>
+<!-- <div class="side-menu"> 
+  <app-side-menu></app-side-menu>
+</div>  -->
 
 <div class="center">
 <div class="home-container">
@@ -28,16 +29,34 @@
       <p>End your current session.</p>
     </a>
   </div>
-</div>
+ </div>
+ <div class="recent-projects-and-chart">
+    <div class="recent-projects">
+        <app-recent-projects></app-recent-projects>
+    </div>
 
- <div class="my-projects">
-      my projects
-      </div>
+    <div class="chart">
+      chart
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="call-me">
+      
+    </p>
+  </div>
 </div>      
 
-<div class="calender">
-  <app-calender [meetings]="meetings"></app-calender>
+<div class="calender-and-news">
+  <div class="calender">
+    <app-calender [meetings]="meetings"></app-calender>
+  </div>
+  <div class="news">
+    news
+  </div>
 </div>
+
+
 
 </div>
 

@@ -3,7 +3,11 @@
 
 <div *ngIf="isLoggedIn">
 
-  <router-outlet></router-outlet>  
-      
+  <app-header></app-header> 
 
+  <div class="main-content">
+    <app-side-menu></app-side-menu>
+    <router-outlet></router-outlet>   
+  </div>
+  
 </div>

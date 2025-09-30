@@ -8,6 +8,7 @@ export class ProjectService{
 
     constructor(private api : Api){}
     projectsUpdated = new Subject<project_inteface>()
+    wanted_projects:project_inteface[] = []
     
     addNewProject(userId: string , entered_project : new_project_interface){
 
@@ -27,4 +28,10 @@ export class ProjectService{
         })
 
     }
+
+    findRecentProjects(user_id:string){
+        return this.api.getProjects(user_id)
+    }
+
+
 }

@@ -21,7 +21,7 @@ export class SideMenu {
   }
 
   onProjects(){
-
+    this.router.navigate(["/side-menu-projects"])
   }
 
   onTasks(){
