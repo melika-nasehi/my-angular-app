@@ -1,0 +1,17 @@
+<h3>upcoming tasks for you</h3>
+<div class="upcoming-tasks">
+@if (selected_tasks.length > 0){
+    @for (item of selected_tasks; track item.id) {
+            <article class="task-article">
+                <p class="title">{{item.title}}</p>
+                <p class="deadline">{{item.deadline}}</p>
+                <p class="related_proj">{{item.project.title}}</p>
+                <button class="compelete_button">mark as compeleted</button>
+            </article>
+        }
+    }
+@else {
+    <p class="else">you dont have any tasks to do</p>
+}    
+</div>
+

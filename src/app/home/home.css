@@ -53,7 +53,7 @@ svg{
   width: 22px;
 }
 
-.recent-projects-and-chart{
+.recent-projects-and-upcoming-tasks{
   display:inline-flex;
 }
 
@@ -66,7 +66,7 @@ svg{
   /* border: 1px solid rgba(128, 128, 128, 0.233); */
 }
 
-.chart{
+.upcoming-tasks{
   background-color: white;
   margin-left: 30px;
   width: 370px;
@@ -148,7 +148,7 @@ h1 {
   color: var(--jira-danger);
 }
 
-.news{
+.chart{
   background-color: white;
   height: 190px;
   margin-top: 20px;

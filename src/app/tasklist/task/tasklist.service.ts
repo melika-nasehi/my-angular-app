@@ -109,9 +109,13 @@ getTasksForUser(user_id: string, page: number = 1, ordering:string='', search:st
     error: (err) => {
       console.error("Error loading tasks:", err);
     }
-  });
-}
+    });
+  }
 
+
+  findUpcomingTasks(user_id:string){
+          return this.api.getTasks2(user_id)
+  }
 
 
 }

@@ -1,0 +1,36 @@
+h3{
+    margin-left: 20px;
+}
+
+.upcoming-tasks{
+    
+}
+
+.task-article{
+    border: 1px solid rgba(128, 128, 128, 0.395);
+    border-radius: 10px;
+    display: inline-flex;
+    padding-left: 5px;
+    margin-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    width: 330px;
+}
+
+.title, .deadline, .related_proj{
+    font-size: 15px;
+    margin-right: 10px;
+    width: 50px;
+}
+
+.compelete_button{
+    height: 35px;
+    width: 150px;
+    font-size: 13px;
+    margin-top: 7px;
+    padding: 0px;
+}
+
+.else{
+    margin-left: 20px;
+}

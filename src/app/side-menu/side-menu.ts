@@ -11,12 +11,16 @@ export class SideMenu {
 
   constructor(private router: Router){}
 
+
+  goToHome(){
+    this.router.navigate(['/home']) ;
+  }
   
   goToDashboard() {
     this.router.navigate(['/dashboard']);
   }
 
-   onAdminPanel(){
+  onAdminPanel(){
     this.router.navigate(['/admin_panel'])
   }
 

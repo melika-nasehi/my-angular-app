@@ -9,11 +9,12 @@ import { RouterLink } from '@angular/router';
 import { Calender } from '../calender/calender';
 import { SideMenu } from "../side-menu/side-menu";
 import { RecentProjects } from "../project/recent-projects/recent-projects";
+import { UpcomingTasks } from "../tasklist/task/upcoming-tasks/upcoming-tasks";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, NgIf, RouterLink, Calender, SideMenu, RecentProjects],
+  imports: [HeaderComponent, NgIf, RouterLink, Calender, SideMenu, RecentProjects, UpcomingTasks],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

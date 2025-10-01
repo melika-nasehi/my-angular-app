@@ -30,6 +30,10 @@ export class Api {
     return this.http.get(`${this.BASE_URL}tasks/tasks/?user_id=${user_id}&page=${page}&ordering=${ordering}&search=${search}`);
   }
 
+  getTasks2(user_id: string): Observable<any> {
+    return this.http.get(`${this.BASE_URL}tasks/task_of_user/${user_id}/`);
+  }
+
 
   addNewTask(taskData: any): Observable<any> {
     const token = localStorage.getItem('access');
